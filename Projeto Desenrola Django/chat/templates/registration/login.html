@@ -1,0 +1,15 @@
+{% extends "chat/base.html" %}
+
+{% block conteudo %}
+<section>
+    <h1>Entrar no Desenrola</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Entrar</button>
+    </form>
+</section>
+{% endblock %}
