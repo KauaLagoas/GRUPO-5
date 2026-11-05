@@ -1,0 +1,7 @@
+
+# Ambiente e arquivos temporários do chat
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+desenrola-chat-sprint8.zip

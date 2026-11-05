@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "usuarios",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,21 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+# Origens permitidas para testar no Codespace.
+import os
+
+CSRF_TRUSTED_ORIGINS = [
+    *globals().get("CSRF_TRUSTED_ORIGINS", []),
+    "http://localhost:8000",
+    "https://localhost:8000",
+]
+
+if os.environ.get("CODESPACE_NAME"):
+    dominio = os.environ.get(
+        "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN",
+        "app.github.dev",
+    )
+    CSRF_TRUSTED_ORIGINS.append(
+        f"https://{os.environ['CODESPACE_NAME']}-8000.{dominio}"
+    )
