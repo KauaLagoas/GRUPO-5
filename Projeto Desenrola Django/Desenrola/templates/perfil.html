@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Desenrola</title>
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+</head>
+<body>
+    <nav class="topbar">
+        <div class="topbar-brand">
+            <img src="{% static 'img/logo desenrola.jpeg' %}" alt="Logo Desenrola" class="topbar-logo">
+        </div>
+        <div class="topbar-icons">
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="card profile-hero">
+            <div class="hero-top">
+                <div class="avatar-wrapper">
+                    <div class="avatar-circle">MC</div>
+                    <div class="avatar-verified">✓</div>
+                </div>
+                <div class="hero-info">
+                    <div class="hero-title-row">
+                        <h1 class="user-name" id="display-nome">Marina Costa</h1>
+                        <span class="badge-trust">🛡️ Perfil confiável</span>
+                    </div>
+                    <p class="user-location" id="display-cidade">São Paulo, SP</p>
+                    <p class="user-bio" id="display-bio">Estudante de Design que ama música e artesanato. Topa trocar ideia sobre qualquer coisa criativa!</p>
+                    
+                    <div class="user-stats">
+                        <span class="stars">★★★★★ <strong>4.8</strong></span>
+                        <span class="stat-text">31 avaliações</span>
+                        <span class="stat-divider">|</span>
+                        <span class="stat-text"><strong>23</strong> trocas realizadas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <a href="{% url 'editar_perfil' %}" class="btn btn-primary">✏️ Editar perfil</a>
+                <button class="btn btn-outline">🔗 Compartilhar</button>
+            </div>
+        </section>
+
+        <div class="skills-layout">
+            <section class="card skill-col" id="col-ensina">
+                <div class="skill-header">
+                    <div class="skill-title-group">
+                        <span class="skill-icon">🎓</span>
+                        <div>
+                            <h2>O que eu posso ensinar</h2>
+                            <p>Habilidades que você compartilha</p>
+                        </div>
+                    </div>
+                    <span class="count-badge">4</span>
+                </div>
+                
+                <ul class="skill-list">
+                </ul>
+            </section>
+
+            <section class="card skill-col" id="col-aprende">
+                <div class="skill-header">
+                    <div class="skill-title-group">
+                        <span class="skill-icon">💡</span>
+                        <div>
+                            <h2>O que eu quero aprender</h2>
+                            <p>Habilidades que você busca</p>
+                        </div>
+                    </div>
+                    <span class="count-badge">4</span>
+                </div>
+                
+                <ul class="skill-list">
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dadosSalvos = localStorage.getItem('desenrola_dados');
+            
+            if (dadosSalvos) {
+                const data = JSON.parse(dadosSalvos);
+                
+                document.getElementById('display-nome').innerText = data.nome;
+                document.getElementById('display-cidade').innerText = data.cidade + " • Formato: " + data.formato;
+                document.getElementById('display-bio').innerText = data.bio;
+
+                const ulEnsina = document.querySelector('#col-ensina .skill-list');
+                ulEnsina.innerHTML = '';
+                data.ensina.forEach(hab => {
+                    ulEnsina.innerHTML += `<li><span class="skill-name"><span class="dot dot-teal"></span> ${hab}</span><span class="skill-category">Adicionado</span></li>`;
+                });
+                document.querySelector('#col-ensina .count-badge').innerText = data.ensina.length;
+
+                const ulAprende = document.querySelector('#col-aprende .skill-list');
+                ulAprende.innerHTML = '';
+                data.aprende.forEach(hab => {
+                    ulAprende.innerHTML += `<li><span class="skill-name"><span class="dot dot-coral"></span> ${hab}</span><span class="skill-category">Adicionado</span></li>`;
+                });
+                document.querySelector('#col-aprende .count-badge').innerText = data.aprende.length;
+            }
+        });
+    </script>
+</body>
+</html>

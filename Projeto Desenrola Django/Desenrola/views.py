@@ -55,3 +55,15 @@ def removerUsuario(request, idUsuario):
         User.objects.filter(username=usuario.username).delete()  # apaga também o login
         usuario.delete()
     return redirect("/usuarios/")
+
+def meu_perfil(request):
+    return render(request, 'perfil.html')
+
+def editar_perfil(request):
+    return render(request, 'editar.html')
+
+def minhas_sessoes(request):
+    return render(request, 'sessoes.html')
+
+def erro404(request):
+    return render(request, 'erro404.html')

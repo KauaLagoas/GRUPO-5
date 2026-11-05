@@ -17,7 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('perfil/', views.meu_perfil, name='meu_perfil'),
+    path('perfil/editar/', views.editar_perfil, name='editar_perfil'),
+    path('sessoes/', views.minhas_sessoes, name='minhas_sessoes'),
+    path('404/', views.erro404, name='erro404'),
 ]

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada - Desenrola</title>
+    <link rel="stylesheet" href="{% static 'css/erro404.css' %}">
+</head>
+<body>
+    <nav class="topbar">
+        <div class="topbar-brand">
+            <img src="{% static 'img/logo desenrola.jpeg' %}" alt="Logo Desenrola" class="topbar-logo">
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="error-wrapper">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">Ninguém sabe tudo...</h2>
+            <p class="error-message">E nós não sabemos onde esta página foi parar. O link que seguiu pode estar quebrado ou a página não existe.</p>
+            <a href="{% url 'meu_perfil' %}" class="btn-primary">Voltar ao Perfil</a>
+        </div>
+    </main>
+</body>
+</html>
