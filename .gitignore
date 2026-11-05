@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python: bytecode e caches
 __pycache__/
 *.py[cod]
@@ -62,3 +63,12 @@ Desktop.ini
 
 # Notebooks, se utilizados futuramente
 .ipynb_checkpoints/
+=======
+
+# Ambiente e arquivos temporários do chat
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+desenrola-chat-sprint8.zip
+>>>>>>> 04e8c6362b78c6a3825fe79921ef4766a6aa5f3f

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "usuarios",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,7 @@ MAILERS = {
     },
 }
 
+<<<<<<< HEAD:Projeto Desenrola Django.errado/MeuSite/settings.py
 
 # Login (sistema pronto do Django, como na atividade AI4)
 LOGOUT_REDIRECT_URL = "/accounts/login/"  # Para onde vai após logout
@@ -139,3 +141,22 @@ CSRF_TRUSTED_ORIGINS = [
     "https://localhost:8000",
     "http://localhost:8000",
 ]
+=======
+# Origens permitidas para testar no Codespace.
+import os
+
+CSRF_TRUSTED_ORIGINS = [
+    *globals().get("CSRF_TRUSTED_ORIGINS", []),
+    "http://localhost:8000",
+    "https://localhost:8000",
+]
+
+if os.environ.get("CODESPACE_NAME"):
+    dominio = os.environ.get(
+        "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN",
+        "app.github.dev",
+    )
+    CSRF_TRUSTED_ORIGINS.append(
+        f"https://{os.environ['CODESPACE_NAME']}-8000.{dominio}"
+    )
+>>>>>>> 04e8c6362b78c6a3825fe79921ef4766a6aa5f3f:Projeto Desenrola Django/MeuSite/settings.py

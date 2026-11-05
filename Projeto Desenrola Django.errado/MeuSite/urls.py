@@ -8,4 +8,6 @@ urlpatterns = [
     path("usuarios/", views.listarUsuarios),
     path("usuarios/<int:idUsuario>/editar/", views.editarUsuario),
     path("usuarios/<int:idUsuario>/remover/", views.removerUsuario),
+    path("chat/", include("chat.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]

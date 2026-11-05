@@ -1,0 +1,2 @@
+{% extends 'chat/base.html' %}
+{% block conteudo %}<section><h1>Suas conversas começam aqui</h1><p>Escolha uma pessoa para trocar conhecimentos.</p><ul class="usuarios">{% for usuario in usuarios %}<li><a href="{% url 'chat:conversa' usuario.pk %}">{{ usuario.get_full_name|default:usuario.username }} <span>Conversar →</span></a></li>{% empty %}<li>Nenhum outro usuário disponível.</li>{% endfor %}</ul></section>{% endblock %}
