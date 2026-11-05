@@ -16,9 +16,9 @@ O remetente é sempre obtido da sessão autenticada. Cada usuário só visualiza
 
 ## Como integrar
 
-Copie o conteúdo deste pacote para a raiz do repositório GRUPO-5, preservando a pasta `Projeto Desenrola Django`. Os únicos arquivos existentes alterados são `manage.py`, `Desenrola/settings.py` (inclusão de `chat`) e `Desenrola/urls.py` (rotas do chat e autenticação). Se esses arquivos tiverem sido alterados pela equipe depois de 04/11/2026, aplique somente essas mudanças em vez de sobrescrevê-los.
+Copie o conteúdo deste pacote para a raiz do repositório GRUPO-5, preservando a pasta `Projeto Desenrola Django`. Os únicos arquivos existentes alterados são `manage.py`, `	MeuSite/settings.py` (inclusão de `chat`) e `MeuSite/urls.py` (rotas do chat e autenticação). Se esses arquivos tiverem sido alterados pela equipe depois de 04/11/2026, aplique somente essas mudanças em vez de sobrescrevê-los.
 
-O chat usa as contas `django.contrib.auth`, as mesmas usadas pelo login Django. A tabela personalizada `Desenrola.Usuario` é separada; seus IDs não devem ser usados como IDs das contas do chat.
+O chat usa as contas `django.contrib.auth`, as mesmas usadas pelo login Django. A tabela personalizada `usuarios.Usuario` é separada; seus IDs não devem ser usados como IDs das contas do chat.
 
 ## Executar no Windows
 
