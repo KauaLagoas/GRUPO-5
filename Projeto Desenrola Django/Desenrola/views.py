@@ -67,3 +67,6 @@ def minhas_sessoes(request):
 
 def erro404(request):
     return render(request, 'erro404.html')
+
+def home(request):
+    return render(request, 'home.html')    

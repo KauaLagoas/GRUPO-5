@@ -21,6 +21,7 @@ from . import views_recomendacoes
 from . import views
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path("admin/", admin.site.urls),
     path("recomendacoes/", views_recomendacoes.recomendacoes, name="recomendacoes"),
     path('perfil/', views.meu_perfil, name='meu_perfil'),
