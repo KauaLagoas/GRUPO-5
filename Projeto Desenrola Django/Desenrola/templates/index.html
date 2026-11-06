@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Habilidades | Desenrola</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-logo">Desenrola</div>
+        <div class="header-user">Área do Mentor</div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">Minhas Habilidades</h1>
+        
+        <div class="skills-grid">
+            
+            <!-- Anúncio Ativo -->
+            <article class="skill-card">
+                <input type="checkbox" id="skill-1" class="toggle-status" checked>
+                <div class="card-body">
+                    <header class="skill-header">
+                        <h2 class="skill-title">Programação em C</h2>
+                        <span class="skill-category">Hard Skill</span>
+                    </header>
+                    <p class="skill-desc">Mentoria estruturada sobre lógica, matrizes e estrutura de dados fundamentais em C para estudantes de engenharia.</p>
+                    
+                    <!-- Aplicação da cor Azul Confiança (Avaliação) -->
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>5.0 (12 avaliações de mentorados)</span>
+                    </div>
+
+                    <div class="status-badge"></div>
+                </div>
+                <footer class="card-footer">
+                    <label for="skill-1" class="btn-action"></label>
+                </footer>
+            </article>
+
+            <!-- Anúncio Pausado -->
+            <article class="skill-card">
+                <input type="checkbox" id="skill-2" class="toggle-status">
+                <div class="card-body">
+                    <header class="skill-header">
+                        <h2 class="skill-title">Oratória e Apresentação</h2>
+                        <span class="skill-category">Soft Skill</span>
+                    </header>
+                    <p class="skill-desc">Técnicas de comunicação clara, argumentação formal e estruturação de defesas de projetos acadêmicos.</p>
+                    
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>4.8 (5 avaliações de mentorados)</span>
+                    </div>
+
+                    <div class="status-badge"></div>
+                </div>
+                <footer class="card-footer">
+                    <label for="skill-2" class="btn-action"></label>
+                </footer>
+            </article>
+
+        </div>
+    </main>
+</body>
+</html>
