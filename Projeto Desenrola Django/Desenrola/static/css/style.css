@@ -1,0 +1,199 @@
+/* === VARIÁVEIS DO ESTUDO DE CORES DESENROLA === */
+:root {
+    /* Família Petróleo (Dominante) */
+    --petroleo-escuro: #053640;
+    --petroleo-base: #0E6E82;
+    --petroleo-vibrante: #189CB5;
+    --petroleo-claro: #A6DEE9;
+    
+    /* Família Coral (Destaque/CTA) */
+    --coral-escuro: #993C1D;
+    --coral-base: #D85A30;
+    --coral-suave: #F0997B;
+    --coral-clarissimo: #FAECE7;
+    
+    /* Cores Semânticas */
+    --azul-confianca: #185FA5;
+    --vermelho-erro: #A32D2D;
+    
+    /* Fundos e Textos */
+    --fundo-principal: #FFFFFF;
+    --fundo-secundario: #F1EFE8;
+    --texto-secundario: #5F5E5A;
+    --texto-principal: #2C2C2A;
+}
+
+/* === RESET E ESTILOS GERAIS === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--fundo-principal);
+    color: var(--texto-principal);
+}
+
+/* === CABEÇALHO === */
+header {
+    background-color: var(--petroleo-base);
+    color: var(--fundo-principal);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(14, 110, 130, 0.15);
+}
+
+.header-logo { 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+}
+.header-user { 
+    font-size: 0.95rem; 
+    font-weight: 600; 
+    color: var(--petroleo-claro);
+}
+
+/* === CONTAINER PRINCIPAL === */
+.container { 
+    max-width: 1000px; 
+    margin: 3rem auto; 
+    padding: 0 1.5rem; 
+}
+
+.page-title {
+    color: var(--petroleo-escuro);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--fundo-secundario);
+    padding-bottom: 0.5rem;
+}
+
+/* === GRID DE ANÚNCIOS === */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* === CARTÃO DE HABILIDADE === */
+.skill-card {
+    background-color: var(--fundo-secundario);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.skill-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    margin-bottom: 1rem; 
+}
+
+.skill-title { 
+    font-size: 1.25rem; 
+    font-weight: 700; 
+    color: var(--petroleo-escuro); 
+}
+
+.skill-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    background-color: var(--petroleo-claro);
+    color: var(--petroleo-escuro);
+}
+
+.skill-desc { 
+    font-size: 0.95rem; 
+    color: var(--texto-secundario); 
+    line-height: 1.5; 
+    margin-bottom: 1rem; 
+}
+
+/* === AVALIAÇÃO / CONFIANÇA === */
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--azul-confianca);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+.trust-badge svg { 
+    width: 16px; 
+    height: 16px; 
+    fill: var(--azul-confianca); 
+}
+
+/* === CHECKBOX HACK (Esconde o input) === */
+.toggle-status { 
+    display: none; 
+}
+
+/* === STATUS E BOTÃO: PAUSADO (Padrão) === */
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background-color: #E2DFD6; /* Tom neutro sobre o fundo secundário */
+    color: var(--texto-secundario);
+}
+.status-badge::before { content: "Pausado"; }
+
+.btn-action {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0.85rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    /* Ação principal: Reativar (Coral) */
+    background-color: var(--coral-base);
+    color: var(--fundo-principal);
+    border: 2px solid var(--coral-base);
+}
+.btn-action::before { content: "Reativar Anúncio"; }
+.btn-action:hover { 
+    background-color: var(--coral-escuro); 
+    border-color: var(--coral-escuro); 
+}
+
+/* === STATUS E BOTÃO: ATIVO (Checked) === */
+.toggle-status:checked ~ .card-body .status-badge {
+    /* Sinalização positiva com cores da marca */
+    background-color: var(--petroleo-claro);
+    color: var(--petroleo-escuro);
+}
+.toggle-status:checked ~ .card-body .status-badge::before { content: "Ativo"; }
+
+.toggle-status:checked ~ .card-footer .btn-action {
+    /* Ação secundária/Destrutiva: Pausar */
+    background-color: transparent;
+    color: var(--coral-escuro); /* Texto escuro para contraste no hover claro */
+    border: 2px solid var(--coral-base);
+}
+.toggle-status:checked ~ .card-footer .btn-action::before { content: "Pausar Anúncio"; }
+.toggle-status:checked ~ .card-footer .btn-action:hover {
+    background-color: var(--coral-clarissimo);
+    border-color: var(--coral-escuro);
+}
