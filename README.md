@@ -3,7 +3,7 @@
 Projeto acadêmico desenvolvido pelo Grupo 5 da PUC-Rio. O Desenrola é uma aplicação web voltada à conexão entre pessoas interessadas em compartilhar e aprender habilidades.
 
 
-Integrantes:
+<h2>Integrantes:</h2>
 
 Riccardo	Bonuccelli;
 
@@ -16,9 +16,7 @@ Pedro Araujo;
 Pedro Lilienthal.
 
 
-
-
-Tecnologias utilizadas
+<h2>Tecnologias utilizadas</h2>
 - Python: lógica e processamento no back-end.
 - Django: framework para desenvolvimento da aplicação web.
 - HTML e CSS: estrutura e estilização das páginas.
@@ -27,7 +25,7 @@ Tecnologias utilizadas
 - Banco de dados relacional: persistência das informações gerenciadas pela aplicação Django (verificar o mecanismo configurado em settings.py).
 
   
-Funcionalidades
+<h2>Funcionalidades</h2>
 
 O projeto contempla, em diferentes etapas de implementação:
 
@@ -41,7 +39,7 @@ O projeto contempla, em diferentes etapas de implementação:
 As funcionalidades listadas representam o escopo da aplicação e podem estar em diferentes estágios de integração ou conclusão.
 
 
-Estrutura de pastas
+<h2>Estrutura de pastas</h2>
 
 A organização abaixo apresenta os principais diretórios identificados na raiz do repositório, e não a árvore completa de arquivos internos do Django.
 
@@ -74,14 +72,14 @@ No Django, os principais arquivos a localizar são:
 - templates/ e static/: páginas HTML, estilos e outros recursos, quando presentes.
 
   
-Modelagem do banco de dados
+<h2>Modelagem do banco de dados</h2>
 
 <img width="1086" height="712" alt="image" src="https://github.com/user-attachments/assets/6bfa76ae-1dd8-4d9a-a839-b23c39a7f8dc" />
 
 O diagrama apresenta as entidades USUARIO, HABILIDADE, USUARIO_HABILIDADE, TROCA, MENSAGEM e AVALIACAO, incluindo suas chaves primárias e estrangeiras. A tabela intermediária USUARIO_HABILIDADE relaciona usuários às habilidades, enquanto as mensagens e avaliações se vinculam às trocas.
 
 
-Como executar o projeto
+<h2>Como executar o projeto</h2>
 
 Pré-requisitos: Python, pip e Git instalados.
 
@@ -106,7 +104,7 @@ Pré-requisitos: Python, pip e Git instalados.
 6. Acesse, normalmente, http://127.0.0.1:8000/ no navegador.
 
    
-Como criar e popular o banco de dados
+<h2>Como criar e popular o banco de dados</h2>
 
 Com o ambiente virtual ativo e estando no diretório do manage.py:
 
@@ -121,7 +119,7 @@ Com o ambiente virtual ativo e estando no diretório do manage.py:
    Atenção: dados_iniciais.json é um nome ilustrativo. O comando de importação só funcionará se o arquivo existir e for compatível com os modelos. Criar o banco com migrate não significa preenchê-lo automaticamente com dados de exemplo. Se houver um comando de seed próprio do grupo, documentar aqui seu nome verdadeiro.
 
    
-Organização e fluxo de trabalho
+<h2>Organização e fluxo de trabalho</h2>
 
 O desenvolvimento é realizado de forma colaborativa, com tarefas distribuídas entre os integrantes e acompanhamento por sprints. As atividades abrangem planejamento, pesquisa, prototipação, desenvolvimento, integração, testes e documentação.
 
