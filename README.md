@@ -39,27 +39,25 @@ O projeto contempla, em diferentes etapas de implementação:
 As funcionalidades listadas representam o escopo da aplicação e podem estar em diferentes estágios de integração ou conclusão.
 
 
-<h2>Estrutura de pastas</h2>
+Estrutura de pastas
+A tabela abaixo apresenta os principais diretórios identificados na raiz do repositório, sem incluir toda a estrutura interna do Django.
+Pasta ou arquivo	Finalidade
+Calculadora/	Materiais e implementação da calculadora
+Entrevista/	Registros de entrevistas
+Estratégia para atrair usuários/	Planejamento de atração de usuários
+HTML/	Páginas HTML
+Identidade do Desenrola/	Identidade visual do projeto
+Login HTML/	Protótipos de login
+Lovable/	Protótipos e referências de telas
+Modelagem do site/	Diagramas de modelagem
+Pesquisa/	Materiais de pesquisa
+Projeto Desenrola Django/	Aplicação Django
+Protótipo visual em HTML+CSS/	Protótipos de interface
+Teste/	Materiais de teste
+docs/	Imagens do README (a adicionar)
+.gitignore	Arquivos ignorados pelo Git
+README.md	Documentação principal
 
-A organização abaixo apresenta os principais diretórios identificados na raiz do repositório, e não a árvore completa de arquivos internos do Django.
-
-GRUPO-5/
-├── Calculadora/                    # Materiais e implementação da calculadora
-├── Entrevista/                     # Registros e materiais de entrevistas
-├── Estratégia para atrair usuários/ # Planejamento de atração de usuários
-├── HTML/                           # Páginas e arquivos HTML
-├── Identidade do Desenrola/        # Identidade visual do projeto
-├── Login HTML/                     # Protótipos e páginas de login
-├── Lovable/                        # Protótipos e referências de telas
-├── Modelagem do site/              # Diagramas e materiais de modelagem
-├── Pesquisa/                       # Materiais de pesquisa
-├── Projeto Desenrola Django/       # Desenvolvimento da aplicação Django
-├── Protótipo visual em HTML+CSS/   # Protótipos de interface
-├── Teste/                          # Materiais de teste
-├── docs/                           # Imagens utilizadas neste README (adicionar)
-│   └── modelagem-banco.png
-├── .gitignore                       # Arquivos ignorados pelo Git
-└── README.md                        # Documentação principal
 
 Também há no repositório a pasta Projeto Desenrola Django.errado, mantida no histórico atual. Antes de uma limpeza, é necessário verificar se ela contém arquivos que ainda serão aproveitados.
 
