@@ -8,3 +8,18 @@ class Usuario(models.Model):
     senha = models.CharField(max_length=200)  # guarda a senha criptografada
     habilidadeEnsina = models.CharField(max_length=100)
     habilidadeAprende = models.CharField(max_length=100)
+
+class Denuncia(models.Model):
+    TIPO_CHOICES = [
+        ('usuario', 'Usuário'),
+        ('habilidade', 'Habilidade'),
+    ]
+    
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    alvo = models.CharField(max_length=100)
+    motivo = models.CharField(max_length=150)
+    descricao = models.TextField()
+    data_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.tipo.capitalize()}: {self.alvo}"
