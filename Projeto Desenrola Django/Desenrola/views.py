@@ -3,6 +3,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Usuario
+from django.contrib import messages
+from .models import Denuncia
 
 
 # CADASTRO: salva um usuário novo no banco
@@ -67,3 +69,22 @@ def minhas_sessoes(request):
 
 def erro404(request):
     return render(request, 'erro404.html')
+
+def reportar(request):
+    if request.method == 'POST':
+        tipo = request.POST.get('tipo')
+        alvo = request.POST.get('alvo')
+        motivo = request.POST.get('motivo')
+        descricao = request.POST.get('descricao')
+        
+        Denuncia.objects.create(
+            tipo=tipo,
+            alvo=alvo,
+            motivo=motivo,
+            descricao=descricao
+        )
+        
+        messages.success(request, 'Sua denúncia foi registrada com sucesso e será analisada pela equipe.')
+        return redirect('reportar')
+        
+    return render(request, 'denuncia.html')

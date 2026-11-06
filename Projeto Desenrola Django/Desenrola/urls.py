@@ -27,4 +27,5 @@ urlpatterns = [
     path('perfil/editar/', views.editar_perfil, name='editar_perfil'),
     path('sessoes/', views.minhas_sessoes, name='minhas_sessoes'),
     path('404/', views.erro404, name='erro404'),
+    path('denunciar/', views.reportar, name='reportar'),
 ]
