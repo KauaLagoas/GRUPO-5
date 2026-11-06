@@ -70,6 +70,9 @@ def minhas_sessoes(request):
 def erro404(request):
     return render(request, 'erro404.html')
 
+def home(request):
+    return render(request, 'home.html')    
+
 def reportar(request):
     if request.method == 'POST':
         tipo = request.POST.get('tipo')

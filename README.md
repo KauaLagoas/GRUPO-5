@@ -1,151 +1,133 @@
-**README do DESENROLA**
+<h1> Desenrola — Grupo 5</h1>
+
+Projeto acadêmico desenvolvido pelo Grupo 5 da PUC-Rio. O Desenrola é uma aplicação web voltada à conexão entre pessoas interessadas em compartilhar e aprender habilidades.
 
 
-O **Desenrola** é uma plataforma digital de troca de conhecimentos e habilidades, desenvolvida com o propósito de tornar o aprendizado mais acessível, colaborativo e conectado à realidade das pessoas.
+<h2>Integrantes:</h2>
 
-Em um cenário no qual o acesso à educação e ao desenvolvimento de novas habilidades frequentemente depende de recursos financeiros, disponibilidade de tempo ou oportunidades específicas, o Desenrola propõe uma alternativa baseada na colaboração entre indivíduos.
+Riccardo	Bonuccelli;
 
-A plataforma busca conectar pessoas que desejam aprender determinadas habilidades com outras que possuem conhecimentos nessas áreas e estão dispostas a compartilhá-los. Dessa forma, o aprendizado deixa de ser uma experiência exclusivamente individual e passa a ser construído por meio da interação, da troca de experiências e do desenvolvimento coletivo.
+Kauã Lagoas;
 
-Inicialmente idealizado para o ambiente universitário, o Desenrola pretende incentivar a formação de uma comunidade em que os participantes possam ampliar seus conhecimentos, desenvolver novas competências e estabelecer conexões significativas.
+Pedro Werner;
 
+Pedro Araujo;
 
-## O problema que queremos resolver
-
-Apesar da grande quantidade de conteúdos educacionais disponíveis na internet, encontrar oportunidades de aprendizado que sejam acessíveis, personalizadas e interativas ainda pode representar um desafio.
-
-Cursos tradicionais nem sempre atendem às necessidades específicas de cada pessoa, enquanto conteúdos gratuitos frequentemente não oferecem acompanhamento ou interação direta com quem ensina.
-
-Ao mesmo tempo, muitas pessoas possuem habilidades valiosas que poderiam compartilhar, mas não encontram espaços adequados para isso.
-
-O Desenrola surge justamente para aproximar essas duas necessidades, criando um ambiente no qual o conhecimento possa circular de maneira mais livre e colaborativa.
-
-Nosso objetivo não é substituir os métodos convencionais de ensino, mas oferecer uma nova possibilidade de aprendizado, valorizando a experiência e o conhecimento que cada indivíduo já possui.
+Pedro Lilienthal.
 
 
-## Nossa solução
+<h2>Tecnologias utilizadas</h2>
+- Python: lógica e processamento no back-end.
+- Django: framework para desenvolvimento da aplicação web.
+- HTML e CSS: estrutura e estilização das páginas.
+- Git e GitHub: versionamento, revisão e colaboração.
+- Lovable: apoio à prototipação de interfaces.
+- Banco de dados relacional: persistência das informações gerenciadas pela aplicação Django (verificar o mecanismo configurado em settings.py).
 
-O Desenrola propõe um ambiente digital no qual usuários podem apresentar suas habilidades, descobrir novos interesses e encontrar pessoas com conhecimentos complementares aos seus.
-
-Imagine, por exemplo, um estudante que possui facilidade com programação, mas deseja aprender inglês. De modo análogo, outro usuário domina o idioma e está interessado em desenvolver suas habilidades tecnológicas.
-
-A plataforma busca facilitar esse encontro, permitindo que os participantes explorem oportunidades de aprendizado e estabeleçam conexões com base em seus interesses.
-
-Esse modelo incentiva não apenas a aquisição de novas competências, mas também o desenvolvimento de habilidades interpessoais, como comunicação, colaboração e trabalho em equipe.
-
-
-## Funcionalidades da plataforma
-
-O desenvolvimento do Desenrola está organizado em torno de funcionalidades que buscam oferecer uma experiência intuitiva e eficiente.
-
-### 1. Cadastro e autenticação
-
-Estrutura destinada à criação e ao gerenciamento de contas, permitindo que os usuários tenham acesso a um ambiente personalizado.
-
-### 2. Perfis de usuários
-
-Espaço para apresentação de informações pessoais relevantes, habilidades, conhecimentos e áreas de interesse.
-
-O objetivo é facilitar a identificação de pessoas com interesses semelhantes ou conhecimentos complementares.
-
-### 3. Exploração de habilidades
-
-Ambiente voltado à descoberta de diferentes áreas de conhecimento, permitindo que os participantes encontrem oportunidades alinhadas aos seus objetivos de aprendizado.
-
-### 4. Conexão entre usuários
-
-Funcionalidades destinadas a aproximar pessoas interessadas em compartilhar e adquirir conhecimentos, estimulando a formação de uma rede colaborativa.
-
-### 5. Interface intuitiva e acessível
-
-Desenvolvimento de uma experiência de navegação organizada, com atenção à clareza das informações, à identidade visual e à facilidade de utilização.
-
-**Observação:** o Desenrola está em desenvolvimento. As funcionalidades descritas representam os principais objetivos da plataforma e podem estar em diferentes estágios de implementação.
-
-
-## Tecnologias utilizadas
-
-O projeto utiliza tecnologias voltadas ao desenvolvimento de aplicações web, buscando uma estrutura organizada, de fácil manutenção e que permita a implementação progressiva de novas funcionalidades.
-
-
-Python: Implementação da lógica de programação e das funcionalidades da aplicação, assim como vimos no primeiro período;
-
-Django: Framework utilizado no desenvolvimento web e na organização do sistema;
-
-HTML: Estruturação das páginas e dos elementos da interface;
-
-CSS: Estilização, organização visual e apresentação da plataforma;
-
-Git: Controle de versões e acompanhamento das alterações no código;
-
-GitHub: Hospedagem do repositório, colaboração e documentação do desenvolvimento; 
-
-A escolha dessas tecnologias permite desenvolver o projeto de maneira estruturada, separando as responsabilidades da aplicação e facilitando futuras melhorias.
-
-
-## Processo de desenvolvimento
-
-O Desenrola é construído de forma colaborativa, com divisão de responsabilidades, organização das atividades e acompanhamento contínuo da evolução do projeto.
-
-O desenvolvimento é estruturado em **sprints**, nas quais são estabelecidos objetivos e tarefas específicas para orientar as entregas da equipe.
-
-Essa abordagem permite organizar o trabalho em etapas menores, avaliar os resultados alcançados e identificar oportunidades de melhoria ao longo da implementação.
-
-Entre as principais frentes de desenvolvimento estão:
-
-- **Planejamento:** definição dos objetivos, requisitos e funcionalidades da plataforma;
- 
-- **Prototipação e interface:** estruturação das telas, organização da navegação e construção da identidade visual;
   
-- **Desenvolvimento back-end:** implementação da lógica da aplicação e dos recursos necessários ao seu funcionamento, utilizando python em sua composição;
+<h2>Funcionalidades</h2>
+
+O projeto contempla, em diferentes etapas de implementação:
+
+- Cadastro e autenticação de usuários.
+- Visualização de perfis e habilidades.
+- Registro de habilidades oferecidas e procuradas.
+- Solicitação e acompanhamento de trocas entre usuários.
+- Chat interno vinculado às trocas.
+- Avaliação das experiências realizadas.
   
-- **Integração:** conexão entre as funcionalidades desenvolvidas e os componentes da interface;
+As funcionalidades listadas representam o escopo da aplicação e podem estar em diferentes estágios de integração ou conclusão.
+
+
+Estrutura de pastas
+A tabela abaixo apresenta os principais diretórios identificados na raiz do repositório, sem incluir toda a estrutura interna do Django.
+Pasta ou arquivo	Finalidade
+Calculadora/	Materiais e implementação da calculadora
+Entrevista/	Registros de entrevistas
+Estratégia para atrair usuários/	Planejamento de atração de usuários
+HTML/	Páginas HTML
+Identidade do Desenrola/	Identidade visual do projeto
+Login HTML/	Protótipos de login
+Lovable/	Protótipos e referências de telas
+Modelagem do site/	Diagramas de modelagem
+Pesquisa/	Materiais de pesquisa
+Projeto Desenrola Django/	Aplicação Django
+Protótipo visual em HTML+CSS/	Protótipos de interface
+Teste/	Materiais de teste
+docs/	Imagens do README (a adicionar)
+.gitignore	Arquivos ignorados pelo Git
+README.md	Documentação principal
+
+
+Também há no repositório a pasta Projeto Desenrola Django.errado, mantida no histórico atual. Antes de uma limpeza, é necessário verificar se ela contém arquivos que ainda serão aproveitados.
+
+No Django, os principais arquivos a localizar são:
+- manage.py: execução de comandos administrativos e inicialização do servidor.
+- settings.py: configurações do projeto, aplicativos e banco de dados.
+- urls.py: definição das rotas.
+- models.py: modelagem das entidades da aplicação.
+- views.py: tratamento das requisições e lógica das páginas.
+- templates/ e static/: páginas HTML, estilos e outros recursos, quando presentes.
+
   
-- **Testes e melhorias:** identificação de problemas, correção de falhas e aperfeiçoamento da experiência do usuário;
-  
-- **Documentação:** registro das decisões, tecnologias e etapas do desenvolvimento.
+<h2>Modelagem do banco de dados</h2>
 
-O uso do GitHub também permite acompanhar o histórico de alterações e a evolução do código, funcionando como um espaço de colaboração e registro técnico, marcando todas as etapas da história do projeto que estamos construindo.
+<img width="1086" height="712" alt="image" src="https://github.com/user-attachments/assets/6bfa76ae-1dd8-4d9a-a839-b23c39a7f8dc" />
 
-
-## Próximas ideias 
-
-À medida que o desenvolvimento avança, o projeto pretende ampliar as possibilidades de interação e aperfeiçoar os recursos oferecidos aos usuários.
-
-Entre as prioridades previstas estão:
-
-- Evoluir as funcionalidades relacionadas aos perfis e às habilidades cadastradas;
-  
-- Aprimorar os mecanismos de descoberta e conexão entre participantes;
-  
-- Melhorar a experiência de navegação e a responsividade da interface;
-  
-- Realizar testes para identificar falhas e oportunidades de otimização;
-  
-- Expandir gradualmente as possibilidades de utilização da plataforma.
-
-Essas etapas fazem parte da evolução planejada para o Desenrola e poderão ser ajustadas conforme as necessidades identificadas durante o desenvolvimento.
+O diagrama apresenta as entidades USUARIO, HABILIDADE, USUARIO_HABILIDADE, TROCA, MENSAGEM e AVALIACAO, incluindo suas chaves primárias e estrangeiras. A tabela intermediária USUARIO_HABILIDADE relaciona usuários às habilidades, enquanto as mensagens e avaliações se vinculam às trocas.
 
 
-## Visão de futuro
+<h2>Como executar o projeto</h2>
 
-Nossa visão é transformar o Desenrola em um espaço no qual aprender e ensinar sejam experiências naturalmente conectadas.
+Pré-requisitos: Python, pip e Git instalados.
 
-Mais do que oferecer uma plataforma tecnológica, queremos incentivar uma cultura de compartilhamento de conhecimento, na qual cada pessoa reconheça o valor das próprias habilidades e encontre oportunidades de crescimento por meio da colaboração.
+1. Clone o repositório:
+   git clone https://github.com/PedroFL1211/GRUPO-5.git
+   cd GRUPO-5
+2. Entre na pasta do projeto Django que contém o arquivo manage.py:
+   cd "Projeto Desenrola Django"
+   Caso o arquivo manage.py esteja em uma subpasta, navegue até ela antes de prosseguir.
+3. Crie e ative um ambiente virtual:
+   python -m venv .venv
+   No Windows (PowerShell):
+   .\.venv\Scripts\Activate.ps1
+   No Linux/macOS:
+   source .venv/bin/activate
+4. Instale as dependências:
+   pip install -r requirements.txt
+   Esse comando pressupõe a existência de requirements.txt na pasta de execução. Se ainda não houver esse arquivo, as dependências do projeto deverão ser identificadas e documentadas antes da instalação.
+5. Aplique as migrações e execute o servidor:
+   python manage.py migrate
+   python manage.py runserver
+6. Acesse, normalmente, http://127.0.0.1:8000/ no navegador.
 
-Acreditamos que o conhecimento se torna ainda mais valioso quando é compartilhado e que conexões entre pessoas com diferentes experiências podem gerar oportunidades que dificilmente surgiriam de maneira isolada.
+   
+<h2>Como criar e popular o banco de dados</h2>
 
+Com o ambiente virtual ativo e estando no diretório do manage.py:
 
-## Equipe e contexto acadêmico
+1. Para gerar migrações após alterações nos modelos (quando necessário):
+   python manage.py makemigrations
+2. Para criar ou atualizar a estrutura do banco:
+   python manage.py migrate
+3. Para criar um usuário administrador:
+   python manage.py createsuperuser
+4. Para popular com dados de exemplo: se o projeto disponibilizar um arquivo de fixture JSON (por exemplo, dados_iniciais.json), será possível importá-lo com:
+   python manage.py loaddata dados_iniciais.json
+   Atenção: dados_iniciais.json é um nome ilustrativo. O comando de importação só funcionará se o arquivo existir e for compatível com os modelos. Criar o banco com migrate não significa preenchê-lo automaticamente com dados de exemplo. Se houver um comando de seed próprio do grupo, documentar aqui seu nome verdadeiro.
 
-O Desenrola é desenvolvido pelo **Grupo 5 da PUC-Rio**, como parte de uma experiência acadêmica que integra conhecimentos de programação, desenvolvimento de software, planejamento e trabalho em equipe.
+   
+<h2>Organização e fluxo de trabalho</h2>
 
-O projeto representa uma oportunidade de aplicar conceitos teóricos a uma solução digital com potencial de impacto real, acompanhando todas as etapas necessárias para transformar uma ideia em uma aplicação funcional.
+O desenvolvimento é realizado de forma colaborativa, com tarefas distribuídas entre os integrantes e acompanhamento por sprints. As atividades abrangem planejamento, pesquisa, prototipação, desenvolvimento, integração, testes e documentação.
 
-Este repositório reúne o código-fonte e os registros de evolução do projeto, permitindo acompanhar as implementações, melhorias e decisões técnicas realizadas ao longo do desenvolvimento. 
+O GitHub é utilizado para centralizar os arquivos e registrar a evolução das entregas. O fluxo de trabalho adotado inclui:
+1. Definição das tarefas e dos responsáveis por sprint.
+2. Desenvolvimento das funcionalidades em branches de trabalho.
+3. Registro das alterações por commits com mensagens descritivas.
+4. Abertura de pull requests para integração das contribuições.
+5. Revisão, testes e atualização da documentação antes da incorporação à branch principal.
+Estado do projeto
+Em desenvolvimento acadêmico. A documentação de instalação e de população do banco deve ser conferida com os arquivos efetivamente presentes na versão final da aplicação.
 
-Agradecemos pela paciência e pela confiança no nosso projeto, esperamos que gostem do resultado final e de nossas ideias futuras.
-
-
-## Desenrola — Ninguém Sabe Tudo
-
+**Desenrola, Ninguém Sabe Tudo**

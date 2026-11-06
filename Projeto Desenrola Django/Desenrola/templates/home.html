@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encontre pessoas para trocar conhecimentos, compartilhar suas habilidades e aprender algo novo no Desenrola.">
+    <title>Desenrola | Ninguém sabe tudo</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="{% url 'home' %}" class="marca">Desenrola</a>
+
+            <nav class="topbar-links" aria-label="Seções da página">
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#categorias">Habilidades</a>
+                <a href="#convivencia">Convivência</a>
+            </nav>
+
+            <div class="topbar-acoes">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'meu_perfil' %}" class="btn btn-contorno">Meu perfil</a>
+                {% else %}
+                    <a href="/accounts/login/" class="btn btn-contorno">Entrar</a>
+                    <a href="/cadastro/" class="btn btn-coral">Cadastre-se</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="titulo-hero">
+            <div class="hero-texto">
+                {% if user.is_authenticated %}
+                    <p class="etiqueta">Olá, {{ user.get_username }} 👋</p>
+                {% else %}
+                    <p class="etiqueta">Ninguém sabe tudo</p>
+                {% endif %}
+
+                <h1 id="titulo-hero">Aprenda algo novo compartilhando o que você sabe.</h1>
+
+                <p class="hero-descricao">
+                    No Desenrola, você encontra pessoas para trocar conhecimentos, ensinar suas
+                    habilidades e aprender com quem tem interesses em comum. Todo mundo tem
+                    algo a ensinar e algo a aprender.
+                </p>
+
+                <div class="hero-botoes">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'recomendacoes' %}" class="btn btn-coral btn-grande">Ver recomendações</a>
+                        <a href="{% url 'minhas_sessoes' %}" class="btn btn-contorno btn-grande">Minhas sessões</a>
+                    {% else %}
+                        <a href="/cadastro/" class="btn btn-coral btn-grande">Criar minha conta</a>
+                        <a href="#como-funciona" class="btn btn-contorno btn-grande">Como funciona</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Cartão ilustrativo: exemplo de uma troca compatível -->
+            <div class="hero-visual" aria-label="Exemplo de troca entre duas pessoas">
+                <div class="troca-card">
+                    <span class="troca-selo">Exemplo de troca</span>
+
+                    <div class="troca-pessoa">
+                        <div class="avatar avatar-petroleo">A</div>
+                        <div>
+                            <p class="troca-nome">Ana</p>
+                            <p class="troca-linha"><strong>Ensina:</strong> Inglês</p>
+                            <p class="troca-linha"><strong>Quer aprender:</strong> Violão</p>
+                        </div>
+                    </div>
+
+                    <div class="troca-seta" aria-hidden="true">⇄</div>
+
+                    <div class="troca-pessoa">
+                        <div class="avatar avatar-coral">B</div>
+                        <div>
+                            <p class="troca-nome">Bruno</p>
+                            <p class="troca-linha"><strong>Ensina:</strong> Violão</p>
+                            <p class="troca-linha"><strong>Quer aprender:</strong> Inglês</p>
+                        </div>
+                    </div>
+
+                    <p class="troca-resultado">✓ Interesses compatíveis</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA -->
+        <section id="como-funciona" class="secao" aria-labelledby="titulo-como">
+            <div class="secao-cabecalho">
+                <h2 id="titulo-como">Como funciona</h2>
+                <p>Do cadastro à avaliação, em quatro passos.</p>
+            </div>
+
+            <ol class="passos">
+                <li class="passo">
+                    <span class="passo-numero">1</span>
+                    <h3>Conte o que você sabe</h3>
+                    <p>Cadastre as habilidades que você pode ensinar e as que quer aprender.</p>
+                </li>
+                <li class="passo">
+                    <span class="passo-numero">2</span>
+                    <h3>Encontre alguém compatível</h3>
+                    <p>Veja recomendações de pessoas com interesses que combinam com os seus.</p>
+                </li>
+                <li class="passo">
+                    <span class="passo-numero">3</span>
+                    <h3>Combine a troca</h3>
+                    <p>Solicite uma sessão e converse pelo chat para acertar os detalhes.</p>
+                </li>
+                <li class="passo">
+                    <span class="passo-numero">4</span>
+                    <h3>Avalie a experiência</h3>
+                    <p>Depois da troca, deixe sua avaliação e ajude a comunidade a crescer.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- CATEGORIAS -->
+        <section id="categorias" class="secao secao-clara" aria-labelledby="titulo-categorias">
+            <div class="secao-cabecalho">
+                <h2 id="titulo-categorias">O que você pode trocar</h2>
+                <p>Dez categorias para começar. Você pode ensinar em uma e aprender em outra.</p>
+            </div>
+
+            <ul class="categorias">
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">🗣️</span>Idiomas</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">💻</span>Tecnologia e Programação</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">🎨</span>Artes e Criatividade</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">🎸</span>Música</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">📚</span>Educação e Estudos</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">📈</span>Negócios e Finanças</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">🧘</span>Saúde e Bem-estar</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">⚽</span>Esportes e Atividades Físicas</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">🍳</span>Culinária</li>
+                <li class="categoria"><span class="categoria-icone" aria-hidden="true">🚀</span>Desenvolvimento Pessoal e Profissional</li>
+            </ul>
+        </section>
+
+        <!-- CONVIVÊNCIA -->
+        <section id="convivencia" class="secao" aria-labelledby="titulo-convivencia">
+            <div class="secao-cabecalho">
+                <h2 id="titulo-convivencia">Uma comunidade com regras claras</h2>
+                <p>Trocar conhecimento funciona melhor com confiança.</p>
+            </div>
+
+            <div class="valores">
+                <article class="valor">
+                    <h3>Respeito</h3>
+                    <p>Cada pessoa está num nível diferente. Paciência e educação sempre.</p>
+                </article>
+                <article class="valor">
+                    <h3>Honestidade</h3>
+                    <p>Ofereça só o que você realmente sabe. Não precisa ser especialista.</p>
+                </article>
+                <article class="valor">
+                    <h3>Compromisso</h3>
+                    <p>Combinou uma troca? Apareça, ou avise com antecedência.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CHAMADA FINAL -->
+        {% if not user.is_authenticated %}
+        <section class="chamada-final" aria-labelledby="titulo-final">
+            <h2 id="titulo-final">Pronto para desenrolar?</h2>
+            <p>Crie sua conta e descubra quem pode aprender com você, e com quem você pode aprender.</p>
+            <a href="/cadastro/" class="btn btn-coral btn-grande">Cadastre-se</a>
+        </section>
+        {% endif %}
+
+    </main>
+
+    <footer class="rodape">
+        <p class="rodape-marca">Desenrola</p>
+        <p>Ninguém sabe tudo.</p>
+        <p class="rodape-credito">Projeto acadêmico do Grupo 5 · PUC-Rio</p>
+    </footer>
+
+</body>
+</html>
