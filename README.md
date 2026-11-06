@@ -17,6 +17,7 @@ Pedro Lilienthal.
 
 
 
+
 Tecnologias utilizadas
 - Python: lógica e processamento no back-end.
 - Django: framework para desenvolvimento da aplicação web.
