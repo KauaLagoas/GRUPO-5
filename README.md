@@ -1,15 +1,19 @@
-Desenrola — Grupo 5
+<h1> Desenrola — Grupo 5</h1>
 
 Projeto acadêmico desenvolvido pelo Grupo 5 da PUC-Rio. O Desenrola é uma aplicação web voltada à conexão entre pessoas interessadas em compartilhar e aprender habilidades.
 
 
-Integrantes
+Integrantes:
 
-Riccardo	Bonuccelli 
-Kauã Lagoas
-Pedro Werner
-Pedro Araujo
-Pedro Lilienthal
+Riccardo	Bonuccelli;
+
+Kauã Lagoas;
+
+Pedro Werner;
+
+Pedro Araujo;
+
+Pedro Lilienthal.
 
 
 Tecnologias utilizadas
