@@ -91,3 +91,68 @@ def reportar(request):
         return redirect('reportar')
         
     return render(request, 'denuncia.html')
+
+# PERFIL PÚBLICO
+# Dados de EXEMPLO. Quando os models Habilidade e Avaliacao existirem,
+# estes dicionários são trocados por consultas ao banco.
+PERFIS_EXEMPLO = {
+    "marina": {
+        "nome": "Marina Costa",
+        "iniciais": "MC",
+        "cidade": "São Paulo, SP",
+        "bio": "Estudante de Design que ama música e artesanato. Topa trocar ideia sobre qualquer coisa criativa!",
+        "trocas": 23,
+        "habilidades": [
+            {"nome": "Fotografia analógica", "categoria": "Artes e Criatividade", "formato": "Presencial"},
+            {"nome": "Desenho", "categoria": "Artes e Criatividade", "formato": "Online"},
+            {"nome": "Violão", "categoria": "Música", "formato": "Online"},
+            {"nome": "Design gráfico", "categoria": "Artes e Criatividade", "formato": "Online"},
+        ],
+        "avaliacoes": [
+            {"autor": "Thiago Mendes", "nota": 5, "habilidade": "Violão", "data": "02/11/2026",
+             "texto": "Aula super paciente e bem organizada. Saí tocando minha primeira música."},
+            {"autor": "Júlia Ramos", "nota": 5, "habilidade": "Fotografia analógica", "data": "25/10/2026",
+             "texto": "Marina explica de um jeito muito claro e ainda trouxe a câmera para eu testar."},
+            {"autor": "Carlos Lima", "nota": 4, "habilidade": "Desenho", "data": "10/10/2026",
+             "texto": "Ótima troca! Só começamos um pouco atrasados, mas o conteúdo foi excelente."},
+        ],
+    },
+    "thiago": {
+        "nome": "Thiago Mendes",
+        "iniciais": "TM",
+        "cidade": "Rio de Janeiro, RJ",
+        "bio": "Professor de inglês nas horas vagas. Quero aprender violão e tocar numa roda de amigos.",
+        "trocas": 11,
+        "habilidades": [
+            {"nome": "Inglês (conversação)", "categoria": "Idiomas", "formato": "Online"},
+            {"nome": "Preparação para entrevistas", "categoria": "Desenvolvimento Pessoal", "formato": "Online"},
+        ],
+        "avaliacoes": [
+            {"autor": "Marina Costa", "nota": 5, "habilidade": "Inglês (conversação)", "data": "30/10/2026",
+             "texto": "Conversamos o tempo todo em inglês e eu me senti à vontade para errar."},
+        ],
+    },
+}
+ 
+ 
+def perfil_publico(request, username):
+    perfil = PERFIS_EXEMPLO.get(username.lower())
+    if perfil is None:
+        raise Http404("Perfil não encontrado")
+ 
+    avaliacoes = perfil["avaliacoes"]
+    for av in avaliacoes:
+        av["estrelas"] = "★" * av["nota"] + "☆" * (5 - av["nota"])
+ 
+    quantidade = len(avaliacoes)
+    media = sum(av["nota"] for av in avaliacoes) / quantidade if quantidade else None
+ 
+    contexto = {
+        "perfil": perfil,
+        "primeiro_nome": perfil["nome"].split()[0],
+        "username": username.lower(),
+        "avaliacoes": avaliacoes,
+        "quantidade": quantidade,
+        "media": media,
+    }
+    return render(request, "perfil_publico.html", contexto)

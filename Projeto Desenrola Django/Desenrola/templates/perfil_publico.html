@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ perfil.nome }} - Desenrola</title>
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'css/perfil_publico.css' %}">
+</head>
+<body>
+    <nav class="topbar">
+        <div class="topbar-brand">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'img/logo desenrola.jpeg' %}" alt="Logo Desenrola" class="topbar-logo">
+            </a>
+        </div>
+        <div class="topbar-icons">
+            <a href="{% url 'recomendacoes' %}" class="topbar-link">❮ Voltar às recomendações</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- CABEÇALHO DO PERFIL -->
+        <section class="card profile-hero">
+            <div class="hero-top">
+                <div class="avatar-wrapper">
+                    <div class="avatar-circle">{{ perfil.iniciais }}</div>
+                </div>
+                <div class="hero-info">
+                    <h1 class="user-name">{{ perfil.nome }}</h1>
+                    <p class="user-location">{{ perfil.cidade }}</p>
+                    <p class="user-bio">{{ perfil.bio }}</p>
+
+                    <div class="user-stats">
+                        {% if media %}
+                            <span class="stars">★ <strong>{{ media|floatformat:1 }}</strong></span>
+                            <span class="stat-text">{{ quantidade }} avaliaç{{ quantidade|pluralize:"ão,ões" }}</span>
+                        {% else %}
+                            <span class="stat-text">Ainda sem avaliações</span>
+                        {% endif %}
+                        <span class="stat-divider">|</span>
+                        <span class="stat-text"><strong>{{ perfil.trocas }}</strong> trocas realizadas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <button type="button" class="btn btn-primary">🤝 Solicitar troca</button>
+                <button type="button" class="btn btn-outline">💬 Enviar mensagem</button>
+            </div>
+        </section>
+
+        <!-- HABILIDADES QUE ENSINA -->
+        <section class="card" aria-labelledby="titulo-habilidades">
+            <div class="skill-header">
+                <div class="skill-title-group">
+                    <span class="skill-icon">🎓</span>
+                    <div>
+                        <h2 id="titulo-habilidades">O que {{ primeiro_nome }} pode ensinar</h2>
+                        <p>Habilidades que essa pessoa compartilha</p>
+                    </div>
+                </div>
+                <span class="count-badge">{{ perfil.habilidades|length }}</span>
+            </div>
+
+            <ul class="skill-list">
+                {% for hab in perfil.habilidades %}
+                <li>
+                    <span class="skill-name"><span class="dot dot-teal"></span> {{ hab.nome }}</span>
+                    <span class="skill-tags">
+                        <span class="skill-category">{{ hab.categoria }}</span>
+                        <span class="skill-category skill-formato">{{ hab.formato }}</span>
+                    </span>
+                </li>
+                {% empty %}
+                <li><span class="skill-name">Nenhuma habilidade cadastrada ainda.</span></li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- AVALIAÇÕES -->
+        <section class="card" aria-labelledby="titulo-avaliacoes">
+            <div class="skill-header">
+                <div class="skill-title-group">
+                    <span class="skill-icon">⭐</span>
+                    <div>
+                        <h2 id="titulo-avaliacoes">Avaliações</h2>
+                        <p>O que as pessoas disseram depois de uma troca</p>
+                    </div>
+                </div>
+                <span class="count-badge">{{ quantidade }}</span>
+            </div>
+
+            <ul class="review-list">
+                {% for av in avaliacoes %}
+                <li class="review">
+                    <div class="review-topo">
+                        <div class="review-autor">
+                            <div class="review-avatar">{{ av.autor|slice:":1" }}</div>
+                            <div>
+                                <p class="review-nome">{{ av.autor }}</p>
+                                <p class="review-meta">{{ av.habilidade }} · {{ av.data }}</p>
+                            </div>
+                        </div>
+                        <span class="stars review-estrelas" aria-label="Nota {{ av.nota }} de 5">{{ av.estrelas }}</span>
+                    </div>
+                    <p class="review-texto">{{ av.texto }}</p>
+                </li>
+                {% empty %}
+                <li class="review-vazia">Ainda não há avaliações. Seja a primeira pessoa a trocar com {{ primeiro_nome }}!</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </main>
+</body>
+</html>

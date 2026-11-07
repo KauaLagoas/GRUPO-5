@@ -26,6 +26,7 @@ urlpatterns = [
     path("recomendacoes/", views_recomendacoes.recomendacoes, name="recomendacoes"),
     path('perfil/', views.meu_perfil, name='meu_perfil'),
     path('perfil/editar/', views.editar_perfil, name='editar_perfil'),
+    path('perfil/<str:username>/', views.perfil_publico, name='perfil_publico'),
     path('sessoes/', views.minhas_sessoes, name='minhas_sessoes'),
     path('404/', views.erro404, name='erro404'),
     path('denunciar/', views.reportar, name='reportar'),
