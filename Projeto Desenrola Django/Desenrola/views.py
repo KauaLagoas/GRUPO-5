@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import Usuario, Habilidade
 from django.contrib import messages
 from .models import Denuncia
@@ -145,29 +145,26 @@ def login_view(request):
     return render(request, 'login.html')
 
 def cadastro_view(request):
+    erro = None
     if request.method == 'POST':
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
-
-        if User.objects.filter(username=email).exists():
-            messages.error(request, 'Este e-mail já está cadastrado.')
-            return redirect('cadastro')
-
-        user = User.objects.create_user(username=email, email=email, password=senha, first_name=nome)
-        user.save()
-
-        Usuario.objects.create(
-            user=user,
-            nome=nome,
-            cidade='',
-            bio='',
-            formato_troca='Flexível'
-        )
         
-        return redirect('login')
-
-    return render(request, 'cadastro.html')
+        # 1. Verifica se o e-mail (que usamos como username) já existe no banco
+        if User.objects.filter(username=email).exists():
+            erro = "Este e-mail já está cadastrado. Tente fazer login."
+        else:
+            # 2. Se não existir, cria o usuário normalmente
+            user = User.objects.create_user(username=email, email=email, password=senha)
+            Usuario.objects.create(user=user, nome=nome)
+            
+            # 3. Faz o login e redireciona para a home
+            login(request, user)
+            return redirect('home')
+            
+    # Se houver erro ou for o primeiro acesso, renderiza a página de cadastro passando a variável de erro
+    return render(request, 'cadastro.html', {'erro': erro})
 
 @login_required(login_url='login')
 def meu_perfil_view(request):
@@ -230,3 +227,29 @@ def editar_perfil_view(request):
 @login_required(login_url='login')
 def sessoes_view(request):
     return render(request, 'sessoes.html')
+
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+@login_required(login_url='login')
+def excluir_conta_view(request):
+    erro = None
+    if request.method == 'POST':
+        senha_digitada = request.POST.get('senha')
+        user = request.user
+        
+        # Verifica se a senha fornecida bate com a do banco
+        if user.check_password(senha_digitada):
+            user.delete() # Exclui os dados em cascata
+            logout(request)
+            return redirect('home')
+        else:
+            erro = "Senha incorreta. Tente novamente."
+            
+    # O Django agora vai procurar o arquivo remocao.html
+    return render(request, 'remocao.html', {'erro': erro})
+
+def sair_view(request):
+    logout(request)
+    return redirect('home')

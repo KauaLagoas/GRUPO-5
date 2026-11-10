@@ -243,3 +243,30 @@ body {
         text-align: center;
     }
 }
+
+.navbar-top {
+    background-color: #0E6E82;
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.navbar-top a {
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+}
+
+.navbar-top h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}

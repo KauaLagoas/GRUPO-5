@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil - Desenrola</title>
-    <link rel="stylesheet" href="{% static 'css/perfil.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}?v=6">
 </head>
 <body>
     <form method="POST" action="{% url 'editar_perfil' %}">
         {% csrf_token %}
         
         <nav class="navbar-top">
-            <a href="{% url 'meu_perfil' %}" onclick="return confirm('Tem certeza? Alterações não salvas serão perdidas.');" style="color: white; text-decoration: none; font-weight: 700; font-size: 0.9rem;">
+            <a href="{% url 'meu_perfil' %}" onclick="return confirm('Tem certeza? Alterações não salvas serão perdidas.');" style="font-size: 0.9rem;">
                 ❮ Sair sem salvar
             </a>
             <h2>Editar perfil</h2>
-            <button type="submit" name="salvar_perfil" class="btn-primary" style="padding: 6px 20px;">✓ Salvar</button>
+            <button type="submit" name="salvar_perfil" class="btn-primary" style="padding: 6px 20px; border: none;">✓ Salvar</button>
         </nav>
 
         <main class="container">

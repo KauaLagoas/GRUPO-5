@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 from . import views_recomendacoes
 from . import views
 
@@ -32,4 +33,6 @@ urlpatterns = [
     path('denunciar/', views.reportar, name='reportar'),
     path('login/', views.login_view, name='login'),
     path('cadastro/', views.cadastro_view, name='cadastro'),
+    path('excluir-conta/', views.excluir_conta_view, name='excluir_conta'),
+    path('logout/', views.sair_view, name='logout'),
 ]

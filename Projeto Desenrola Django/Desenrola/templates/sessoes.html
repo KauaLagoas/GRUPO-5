@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas Sessões - Desenrola</title>
-    <link rel="stylesheet" href="{% static 'css/sessoes.css' %}">
+    <!-- Adicione o ?v=2 aqui para limpar o cache -->
+    <link rel="stylesheet" href="{% static 'css/sessoes.css' %}?v=2">
 </head>
 <body>
-    <nav class="topbar">
-        <a href="{% url 'meu_perfil' %}" class="btn-back">❮ Voltar</a>
-        <h1 class="page-title">Minhas sessões</h1>
-        <div class="topbar-icons">
-        </div>
+    <nav class="navbar-top">
+        <a href="{% url 'home' %}">❮ Voltar</a>
+        <h2>Minhas sessões</h2>
     </nav>
 
     <main class="container">

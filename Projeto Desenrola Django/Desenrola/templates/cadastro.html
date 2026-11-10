@@ -16,9 +16,17 @@
             <img src="{% static 'img/logo desenrola.jpeg' %}" alt="Logo Desenrola" class="auth-logo">
             <h1>Crie sua conta</h1>
             
+            <!-- Bloco de erro (se vier pela variável 'erro' da view) -->
+            {% if erro %}
+            <p style="color: #D32F2F; font-size: 0.9rem; font-weight: bold; margin-bottom: 16px; text-align: center; background-color: rgba(163, 45, 45, 0.1); padding: 10px; border-radius: 8px; border: 1px solid #D32F2F;">
+                {{ erro }}
+            </p>
+            {% endif %}
+
+            <!-- Bloco de erro (se vier pelo framework de mensagens do Django) -->
             {% if messages %}
                 {% for message in messages %}
-                    <p class="msg-erro">{{ message }}</p>
+                    <p class="msg-erro" style="color: #D32F2F; font-size: 0.9rem; font-weight: bold; margin-bottom: 16px; text-align: center; background-color: rgba(163, 45, 45, 0.1); padding: 10px; border-radius: 8px; border: 1px solid #D32F2F;">{{ message }}</p>
                 {% endfor %}
             {% endif %}
             

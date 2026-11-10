@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - Desenrola</title>
-    <link rel="stylesheet" href="{% static 'css/perfil.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}?v=8">
 </head>
 <body>
-    <nav class="navbar-top" style="background-color: white; border-bottom: 2px solid var(--azul-petroleo-base);">
-        <!-- Logo clicável direcionando para a Home -->
-        <a href="{% url 'home' %}" style="display: flex; align-items: center;">
-            <img src="{% static 'img/logo desenrola.jpeg' %}" alt="Desenrola" style="height: 40px; border-radius: 20px;">
-        </a>
-        
-        <!-- Botão de Minhas Sessões movido para o topo -->
-        <a href="{% url 'sessoes' %}" class="btn-outline">Minhas Sessões</a>
+    <nav class="navbar-top" style="position: relative;">
+        <a href="{% url 'home' %}">❮ Voltar</a>
+        <h2 style="position: absolute; left: 50%; transform: translateX(-50%);">Meu perfil</h2>
     </nav>
 
     <main class="container">
@@ -74,6 +69,12 @@
                 <p style="color: var(--texto-secundario); font-size: 0.9rem;">Nenhuma habilidade adicionada.</p>
                 {% endfor %}
             </div>
+        </div>
+
+        <!-- Botões de Sair e Excluir Conta -->
+        <div class="area-excluir-conta" style="display: flex; justify-content: center; gap: 16px;">
+            <a href="{% url 'logout' %}" class="btn-sair">Sair da conta</a>
+            <a href="{% url 'excluir_conta' %}" class="btn-excluir">Excluir conta</a>
         </div>
     </main>
 </body>
