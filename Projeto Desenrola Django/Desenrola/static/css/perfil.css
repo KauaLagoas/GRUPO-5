@@ -1,71 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --azul-petroleo-escuro: #053640;
-  --azul-petroleo-base: #0E6E82;
-  --azul-petroleo-vibrante: #189CB5;
-  --azul-petroleo-claro: #A6DEE9;
-  --coral-escuro: #993C1D;
-  --coral-base: #D85A30;
-  --coral-suave: #F0997B;
-  --coral-clarissimo: #FAECE7;
-  --azul-confianca: #185FA5;
-  --vermelho-erro: #A32D2D;
-  --fundo-principal: #FFFFFF;
-  --fundo-secundario: #F1EFE8;
-  --texto-secundario: #5F5E5A;
-  --texto-principal: #2C2C2A;
-  --font-display: 'Fredoka', sans-serif;
-  --font-sans: 'Nunito', sans-serif;
+    --azul-petroleo-escuro: #053640;
+    --azul-petroleo-base: #0E6E82;
+    --azul-claro: #AEE2E8;
+    --coral-base: #D85A30;
+    --fundo-principal: #F8F9FA;
+    --fundo-cartao: #FFFFFF;
+    --texto-principal: #2C2C2A;
+    --texto-secundario: #5F5E5A;
+    --borda-cinza: #E8E8E8;
+    --font-display: 'Fredoka', sans-serif;
+    --font-sans: 'Nunito', sans-serif;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: var(--fundo-secundario);
+    background-color: var(--fundo-principal);
     font-family: var(--font-sans);
     color: var(--texto-principal);
-    padding-bottom: 60px;
 }
 
-h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 600;
-}
-
-.topbar {
+/* ================= BARRA DE NAVEGAÇÃO ================= */
+.navbar-top {
     background-color: var(--azul-petroleo-base);
-    height: 64px;
+    color: white;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
-    color: var(--fundo-principal);
 }
 
-.topbar-brand {
-    display: flex;
-    align-items: center;
-    background-color: var(--fundo-principal);
-    padding: 6px 16px;
-    border-radius: 24px;
-}
+.navbar-top h2 { font-family: var(--font-display); font-size: 1.2rem; }
+.navbar-top a { color: white; text-decoration: none; font-weight: 700; }
 
-.topbar-logo {
-    height: 28px;
-    object-fit: contain;
-}
-
-.topbar-icons {
-    display: flex;
-    gap: 20px;
-    font-size: 1.2rem;
-}
-
+/* ================= ESTRUTURA GERAL ================= */
 .container {
     max-width: 1000px;
     margin: 32px auto;
@@ -76,256 +46,234 @@ h1, h2, h3, h4 {
 }
 
 .card {
-    background-color: var(--fundo-principal);
-    border-radius: 16px;
+    background-color: var(--fundo-cartao);
+    border-radius: 24px;
     padding: 32px;
-    box-shadow: 0 2px 8px rgba(5, 54, 64, 0.04);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--borda-cinza);
 }
 
-.hero-top {
-    display: flex;
-    gap: 24px;
+.card-title {
+    font-family: var(--font-display);
+    color: var(--azul-petroleo-escuro);
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.card-subtitle {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
     margin-bottom: 24px;
 }
 
-.avatar-wrapper {
-    position: relative;
-    width: 120px;
-    height: 120px;
-}
-
-.avatar-circle {
-    width: 100%;
-    height: 100%;
-    background-color: var(--fundo-secundario);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-size: 3rem;
-    color: var(--azul-petroleo-escuro);
-}
-
-.avatar-verified {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    background-color: var(--azul-confianca);
-    color: var(--fundo-principal);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    border: 2px solid var(--fundo-principal);
-}
-
-.hero-info {
-    flex: 1;
-}
-
-.hero-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
-}
-
-.user-name {
-    font-size: 1.8rem;
-    color: var(--azul-petroleo-escuro);
-}
-
-.badge-trust {
-    background-color: var(--fundo-secundario);
-    color: var(--azul-confianca);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-.user-location {
-    color: var(--texto-secundario);
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-}
-
-.user-bio {
-    line-height: 1.5;
-    margin-bottom: 16px;
-}
-
-.user-stats {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    font-size: 0.95rem;
-}
-
-.stars {
-    color: var(--azul-confianca);
-}
-
-.stat-divider {
-    color: #D1D0C9;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 16px;
-}
-
-.btn {
-    padding: 12px 24px;
-    border-radius: 24px;
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    display: inline-block;
-}
-
+/* ================= BOTÕES ================= */
 .btn-primary {
     background-color: var(--coral-base);
-    color: var(--fundo-principal);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-outline {
     background-color: transparent;
-    border: 1px solid var(--azul-petroleo-base);
     color: var(--azul-petroleo-base);
-}
-
-.btn-outline-full {
-    width: 100%;
-    background-color: transparent;
-    border: 1px solid var(--coral-base);
-    color: var(--coral-base);
-    padding: 14px;
-    border-radius: 8px;
+    border: 1px solid var(--azul-petroleo-base);
+    padding: 10px 24px;
+    border-radius: 24px;
+    text-decoration: none;
     font-weight: 700;
-    cursor: pointer;
-    margin-top: 16px;
-}
-
-.skills-layout {
-    display: flex;
-    gap: 24px;
-}
-
-.skill-col {
-    flex: 1;
-    padding: 24px;
-}
-
-.skill-header {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 24px;
+    gap: 8px;
 }
 
-.skill-title-group {
+/* ================= TELA PERFIL ================= */
+.profile-header {
     display: flex;
-    gap: 12px;
-    align-items: center;
+    gap: 32px;
+    align-items: flex-start;
 }
 
-.skill-title-group h2 {
-    font-size: 1.2rem;
+.avatar-wrapper { position: relative; }
+.avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--fundo-principal);
+}
+
+.badge-check {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #1976D2;
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    font-size: 14px;
+}
+
+.profile-info h1 {
+    font-family: var(--font-display);
     color: var(--azul-petroleo-escuro);
+    font-size: 2rem;
     margin-bottom: 4px;
 }
 
-.skill-title-group p {
+.profile-cidade {
+    color: var(--texto-secundario);
+    margin-bottom: 16px;
+}
+
+.profile-bio {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    max-width: 600px;
+}
+
+.profile-actions { display: flex; gap: 16px; }
+
+/* Grid de Habilidades (Estático) */
+.skills-grid {
+    display: flex;
+    gap: 24px;
+}
+.skills-card { flex: 1; }
+.skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borda-cinza);
+}
+.skill-tag {
+    background-color: var(--fundo-principal);
+    padding: 4px 12px;
+    border-radius: 12px;
     font-size: 0.85rem;
     color: var(--texto-secundario);
 }
 
-.count-badge {
-    background-color: var(--azul-petroleo-claro);
-    color: var(--azul-petroleo-escuro);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+/* ================= TELA EDITAR ================= */
+.form-row {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--texto-principal);
 }
 
-.skill-list {
-    list-style: none;
+.input-group input,
+.input-group textarea {
+    padding: 14px;
+    border: 1px solid var(--borda-cinza);
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background-color: var(--fundo-cartao);
+    outline: none;
+    transition: border-color 0.2s;
 }
 
-.skill-list li {
+.input-group input:focus,
+.input-group textarea:focus { border-color: var(--azul-petroleo-base); }
+
+/* Cartões de Formato de Troca */
+.format-grid {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--fundo-secundario);
+    gap: 16px;
 }
 
-.dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.dot-teal { background-color: var(--azul-petroleo-vibrante); }
-.dot-coral { background-color: var(--coral-base); }
-
-.skill-category {
-    background-color: var(--fundo-secundario);
-    padding: 4px 12px;
+.format-card {
+    flex: 1;
+    border: 2px solid var(--borda-cinza);
     border-radius: 16px;
-    font-size: 0.8rem;
-    color: var(--texto-secundario);
-    font-weight: 600;
+    padding: 24px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    background-color: var(--fundo-cartao);
 }
 
-@media (max-width: 768px) {
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-        padding: 24px;
-        gap: 16px;
-    }
-    
-    .hero-actions {
-        flex-direction: column;
-        width: 100%;
-    }
+.format-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
 
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
+.format-card h4 {
+    font-family: var(--font-display);
+    color: var(--texto-principal);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
 
-    .skills-layout {
-        flex-direction: column;
-        gap: 20px;
-    }
+.format-card p {
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+}
 
-    .profile-stats {
-        flex-direction: column;
-    }
+/* O "truque" para o cartão selecionado ficar azul */
+.format-card:has(input:checked) {
+    background-color: var(--azul-claro);
+    border-color: var(--azul-petroleo-base);
+}
 
-    .stat-item {
-        border-right: none;
-        border-bottom: 1px solid var(--fundo-secundario);
-    }
+.btn-remover-hab {
+    background: none;
+    border: none;
+    color: var(--texto-secundario);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
 
-    .stat-item:last-child {
-        border-bottom: none;
-    }
+.btn-remover-hab:hover { color: var(--vermelho-erro, #A32D2D); }
+
+.add-skill-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.add-skill-box input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--borda-cinza);
+    border-radius: 20px;
+    font-size: 0.95rem;
+}
+
+.add-skill-box button {
+    background-color: var(--azul-petroleo-base);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
 }

@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Usuario
+from django.contrib.auth import authenticate, login
+from .models import Usuario, Habilidade
 from django.contrib import messages
 from .models import Denuncia
 
@@ -27,36 +28,6 @@ def cadastrarUsuario(request):
             user.save()
             return redirect("/usuarios/")
     return render(request, "usuarios/cadastro.html", {"erro": erro})
-
-
-# LISTA: busca todos os usuários no banco
-@login_required
-def listarUsuarios(request):
-    usuarios = Usuario.objects.all()
-    return render(request, "usuarios/lista.html", {"usuarios": usuarios})
-
-
-# EDIÇÃO: mostra os dados atuais e salva as mudanças
-@login_required
-def editarUsuario(request, idUsuario):
-    usuario = get_object_or_404(Usuario, id=idUsuario)
-    if request.method == "POST":
-        usuario.nome = request.POST["nome"]
-        usuario.habilidadeEnsina = request.POST["ensina"]
-        usuario.habilidadeAprende = request.POST["aprende"]
-        usuario.save()
-        return redirect("/usuarios/")
-    return render(request, "usuarios/editar.html", {"usuario": usuario})
-
-
-# REMOÇÃO: apaga o usuário do banco
-@login_required
-def removerUsuario(request, idUsuario):
-    usuario = get_object_or_404(Usuario, id=idUsuario)
-    if request.method == "POST":
-        User.objects.filter(username=usuario.username).delete()  # apaga também o login
-        usuario.delete()
-    return redirect("/usuarios/")
 
 def meu_perfil(request):
     return render(request, 'perfil.html')
@@ -156,3 +127,106 @@ def perfil_publico(request, username):
         "media": media,
     }
     return render(request, "perfil_publico.html", contexto)
+
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        
+        user = authenticate(request, username=email, password=senha)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('meu_perfil')
+        else:
+            messages.error(request, 'E-mail ou senha incorretos.')
+            return redirect('login')
+
+    return render(request, 'login.html')
+
+def cadastro_view(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        if User.objects.filter(username=email).exists():
+            messages.error(request, 'Este e-mail já está cadastrado.')
+            return redirect('cadastro')
+
+        user = User.objects.create_user(username=email, email=email, password=senha, first_name=nome)
+        user.save()
+
+        Usuario.objects.create(
+            user=user,
+            nome=nome,
+            cidade='',
+            bio='',
+            formato_troca='Flexível'
+        )
+        
+        return redirect('login')
+
+    return render(request, 'cadastro.html')
+
+@login_required(login_url='login')
+def meu_perfil_view(request):
+    try:
+        perfil = request.user.usuario
+    except Usuario.DoesNotExist:
+        perfil = Usuario.objects.create(user=request.user, nome=request.user.username)
+        
+    hab_ensinar = perfil.habilidades.filter(tipo='ensinar')
+    hab_aprender = perfil.habilidades.filter(tipo='aprender')
+        
+    return render(request, 'perfil.html', {
+        'perfil': perfil,
+        'hab_ensinar': hab_ensinar,
+        'hab_aprender': hab_aprender
+    })
+
+@login_required(login_url='login')
+@login_required(login_url='login')
+def editar_perfil_view(request):
+    try:
+        perfil = request.user.usuario
+    except Usuario.DoesNotExist:
+        perfil = Usuario.objects.create(user=request.user, nome=request.user.username)
+        
+    hab_ensinar = perfil.habilidades.filter(tipo='ensinar')
+    hab_aprender = perfil.habilidades.filter(tipo='aprender')
+    
+    if request.method == 'POST':
+        if 'salvar_perfil' in request.POST:
+            # 1. Salva os dados de texto
+            perfil.nome = request.POST.get('nome')
+            perfil.cidade = request.POST.get('cidade')
+            perfil.bio = request.POST.get('bio')
+            perfil.formato_troca = request.POST.get('formato_troca')
+            perfil.save()
+            
+            # 2. Limpa as habilidades antigas e salva as novas baseadas na tela
+            perfil.habilidades.all().delete()
+            
+            # Recupera as listas geradas pelo JavaScript
+            lista_ensinar = request.POST.getlist('hab_ensinar[]')
+            for nome_hab in lista_ensinar:
+                if nome_hab.strip():
+                    Habilidade.objects.create(usuario=perfil, nome=nome_hab.strip(), tipo='ensinar')
+                    
+            lista_aprender = request.POST.getlist('hab_aprender[]')
+            for nome_hab in lista_aprender:
+                if nome_hab.strip():
+                    Habilidade.objects.create(usuario=perfil, nome=nome_hab.strip(), tipo='aprender')
+            
+            return redirect('meu_perfil')
+            
+    return render(request, 'editar.html', {
+        'perfil': perfil,
+        'hab_ensinar': hab_ensinar,
+        'hab_aprender': hab_aprender
+    })
+
+@login_required(login_url='login')
+def sessoes_view(request):
+    return render(request, 'sessoes.html')
