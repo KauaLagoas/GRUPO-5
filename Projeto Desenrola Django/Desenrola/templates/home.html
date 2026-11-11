@@ -19,6 +19,8 @@
                 <a href="#como-funciona">Como funciona</a>
                 <a href="#categorias">Habilidades</a>
                 <a href="#convivencia">Convivência</a>
+                <a href="{% url 'reportar' %}">Denunciar</a>
+                {% if user.is_staff %}<a href="{% url 'moderacao_denuncias' %}">Moderação</a>{% endif %}
             </nav>
 
             <div class="topbar-acoes">
