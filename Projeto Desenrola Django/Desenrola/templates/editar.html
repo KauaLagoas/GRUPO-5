@@ -5,193 +5,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil - Desenrola</title>
-    <link rel="stylesheet" href="{% static 'css/editar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}?v=6">
 </head>
 <body>
-    <nav class="topbar">
-        <button id="btn-sair" class="btn-cancelar">❮ Sair sem salvar</button>
-        <h1 class="page-title">Editar perfil</h1>
-        <button id="btn-salvar" class="btn-save">✓ Salvar</button>
-    </nav>
+    <form method="POST" action="{% url 'editar_perfil' %}">
+        {% csrf_token %}
+        
+        <nav class="navbar-top">
+            <a href="{% url 'meu_perfil' %}" onclick="return confirm('Tem certeza? Alterações não salvas serão perdidas.');" style="font-size: 0.9rem;">
+                ❮ Sair sem salvar
+            </a>
+            <h2>Editar perfil</h2>
+            <button type="submit" name="salvar_perfil" class="btn-primary" style="padding: 6px 20px; border: none;">✓ Salvar</button>
+        </nav>
 
-    <main class="container">
-        <section class="card">
-            <div class="card-header">
-                <h2>Identidade</h2>
-                <p>Como você aparece no Desenrola</p>
-            </div>
-            <div class="form-row">
-                <div class="input-group">
-                    <label>Nome</label>
-                    <input type="text" id="input-nome" value="Marina Costa">
+        <main class="container">
+            <!-- Cartão Identidade -->
+            <div class="card">
+                <h3 class="card-title">Identidade</h3>
+                <p class="card-subtitle">Como você aparece no Desenrola</p>
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="{{ perfil.nome }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Cidade</label>
+                        <input type="text" name="cidade" value="{{ perfil.cidade }}" required>
+                    </div>
                 </div>
+
                 <div class="input-group">
-                    <label>Cidade</label>
-                    <input type="text" id="input-cidade" value="São Paulo, SP">
-                </div>
-            </div>
-            <div class="input-group full-width">
-                <div class="label-header">
                     <label>Descrição</label>
-                    <span>97/200</span>
+                    <textarea name="bio" rows="4" required>{{ perfil.bio }}</textarea>
                 </div>
-                <textarea id="input-bio" rows="3">Estudante de Design que ama música e artesanato. Topa trocar ideia sobre qualquer coisa criativa!</textarea>
             </div>
-        </section>
 
-        <section class="card">
-            <div class="card-header">
-                <h2>Habilidades</h2>
-                <p>Adicione e remova o que você ensina e o que quer aprender</p>
-            </div>
-            <div class="skills-grid" id="skills-container">
-                <div class="skill-box" id="box-ensina">
-                    <div class="skill-box-header">
-                        <h3>O que eu posso ensinar</h3>
-                        <span class="badge">2</span>
-                    </div>
-                    <div class="lista-habilidades">
+            <!-- Grade de Habilidades -->
+            <div class="skills-grid">
+                
+                <!-- O que eu posso ensinar -->
+                <div class="card skills-card">
+                    <h3 class="card-title">O que eu posso ensinar</h3>
+                    <p class="card-subtitle">Habilidades que você compartilha</p>
+                    
+                    <div id="lista-ensinar">
+                        {% for hab in hab_ensinar %}
                         <div class="skill-item">
-                            <span><span class="dot dot-teal"></span> Violão popular</span>
-                            <button class="btn-remove">✕</button>
+                            <p>• {{ hab.nome }}</p>
+                            <input type="hidden" name="hab_ensinar[]" value="{{ hab.nome }}">
+                            <button type="button" class="btn-remover-hab" onclick="this.parentElement.remove()">×</button>
                         </div>
-                        <div class="skill-item">
-                            <span><span class="dot dot-teal"></span> Tricô básico</span>
-                            <button class="btn-remove">✕</button>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="add-skill">
-                        <input type="text" placeholder="Adicionar habilidade">
-                        <button class="btn-add">+</button>
+                    
+                    <div class="add-skill-box">
+                        <input type="text" id="input-ensinar" placeholder="Adicionar habilidade">
+                        <button type="button" onclick="adicionarHabilidade('ensinar')">+</button>
                     </div>
                 </div>
 
-                <div class="skill-box" id="box-aprende">
-                    <div class="skill-box-header">
-                        <h3>O que eu quero aprender</h3>
-                        <span class="badge">2</span>
-                    </div>
-                    <div class="lista-habilidades">
+                <!-- O que eu quero aprender -->
+                <div class="card skills-card">
+                    <h3 class="card-title">O que eu quero aprender</h3>
+                    <p class="card-subtitle">Habilidades que você busca</p>
+                    
+                    <div id="lista-aprender">
+                        {% for hab in hab_aprender %}
                         <div class="skill-item">
-                            <span><span class="dot dot-coral"></span> Fotografia analógica</span>
-                            <button class="btn-remove">✕</button>
+                            <p>• {{ hab.nome }}</p>
+                            <input type="hidden" name="hab_aprender[]" value="{{ hab.nome }}">
+                            <button type="button" class="btn-remover-hab" onclick="this.parentElement.remove()">×</button>
                         </div>
-                        <div class="skill-item">
-                            <span><span class="dot dot-coral"></span> Inglês — conversação</span>
-                            <button class="btn-remove">✕</button>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="add-skill">
-                        <input type="text" placeholder="Adicionar habilidade">
-                        <button class="btn-add">+</button>
+
+                    <div class="add-skill-box">
+                        <input type="text" id="input-aprender" placeholder="Adicionar habilidade">
+                        <button type="button" onclick="adicionarHabilidade('aprender')">+</button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="card">
-            <div class="card-header">
-                <h2>Formato de troca</h2>
-                <p>Como você prefere fazer as trocas de habilidade</p>
-            </div>
-            <div class="format-grid">
-                <div class="format-card" data-formato="Presencial">
-                    <span class="icon">📍</span>
-                    <h4>Presencial</h4>
-                    <p>Encontro no olho, num café ou praça</p>
-                    <div class="radio"></div>
-                </div>
-                <div class="format-card" data-formato="Online">
-                    <span class="icon">💻</span>
-                    <h4>Online</h4>
-                    <p>Chamada de vídeo ou mensagem</p>
-                    <div class="radio"></div>
-                </div>
-                <div class="format-card active" data-formato="Flexível">
-                    <span class="icon">🔀</span>
-                    <h4>Flexível</h4>
-                    <p>Tanto presencial quanto online</p>
-                    <div class="radio checked">✓</div>
-                </div>
-            </div>
-        </section>
-    </main>
+            </div> <!-- Fechamento correto da skills-grid -->
 
+            <!-- Cartão Formato de Troca -->
+            <div class="card">
+                <h3 class="card-title">Formato de troca</h3>
+                <p class="card-subtitle">Como você prefere fazer as trocas de habilidade</p>
+                
+                <div class="format-grid">
+                    <label class="format-card">
+                        <input type="radio" name="formato_troca" value="Presencial" {% if perfil.formato_troca == 'Presencial' %}checked{% endif %}>
+                        <h4>📍 Presencial</h4>
+                        <p>Encontro no olho, num café ou praça</p>
+                    </label>
+
+                    <label class="format-card">
+                        <input type="radio" name="formato_troca" value="Online" {% if perfil.formato_troca == 'Online' %}checked{% endif %}>
+                        <h4>💻 Online</h4>
+                        <p>Chamada de vídeo ou mensagem</p>
+                    </label>
+
+                    <label class="format-card">
+                        <input type="radio" name="formato_troca" value="Flexível" {% if perfil.formato_troca == 'Flexível' %}checked{% endif %}>
+                        <h4>🔀 Flexível</h4>
+                        <p>Tanto presencial quanto online</p>
+                    </label>
+                </div>
+            </div>
+        </main>
+    </form>
+    
     <script>
-        document.getElementById('btn-sair').addEventListener('click', function() {
-            const confirmar = confirm("Atenção: Qualquer alteração feita não será salva. Deseja realmente sair?");
-            if (confirmar) {
-                window.location.href = "{% url 'meu_perfil' %}";
-            }
-        });
+        function adicionarHabilidade(tipo) {
+            const input = document.getElementById('input-' + tipo);
+            const valor = input.value.trim();
+            if (valor === "") return;
 
-        const formatCards = document.querySelectorAll('.format-card');
-        formatCards.forEach(card => {
-            card.addEventListener('click', function() {
-                formatCards.forEach(c => {
-                    c.classList.remove('active');
-                    c.querySelector('.radio').classList.remove('checked');
-                    c.querySelector('.radio').innerHTML = '';
-                });
-                this.classList.add('active');
-                this.querySelector('.radio').classList.add('checked');
-                this.querySelector('.radio').innerHTML = '✓';
-            });
-        });
-
-        function atualizarContadores() {
-            document.querySelectorAll('.skill-box').forEach(box => {
-                const count = box.querySelectorAll('.skill-item').length;
-                box.querySelector('.badge').innerText = count;
-            });
+            const lista = document.getElementById('lista-' + tipo);
+            
+            const div = document.createElement('div');
+            div.className = 'skill-item';
+            div.innerHTML = `
+                <p>• ${valor}</p>
+                <input type="hidden" name="hab_${tipo}[]" value="${valor}">
+                <button type="button" class="btn-remover-hab" onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            lista.appendChild(div);
+            input.value = "";
         }
 
-        document.getElementById('skills-container').addEventListener('click', function(e) {
-            if (e.target.classList.contains('btn-remove')) {
-                e.target.closest('.skill-item').remove();
-                atualizarContadores();
-            }
+        // Permitir adicionar a habilidade apertando a tecla Enter no teclado
+        document.getElementById('input-ensinar').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') { e.preventDefault(); adicionarHabilidade('ensinar'); }
         });
-
-        document.querySelectorAll('.btn-add').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const input = this.previousElementSibling;
-                const valor = input.value.trim();
-                const isEnsina = this.closest('.skill-box').id === 'box-ensina';
-                const dotClass = isEnsina ? 'dot-teal' : 'dot-coral';
-
-                if (valor) {
-                    const novoItem = document.createElement('div');
-                    novoItem.className = 'skill-item';
-                    novoItem.innerHTML = `<span><span class="dot ${dotClass}"></span> ${valor}</span><button class="btn-remove">✕</button>`;
-                    
-                    this.closest('.skill-box').querySelector('.lista-habilidades').appendChild(novoItem);
-                    input.value = '';
-                    atualizarContadores();
-                }
-            });
-        });
-
-        document.getElementById('btn-salvar').addEventListener('click', function() {
-            const perfilData = {
-                nome: document.getElementById('input-nome').value,
-                cidade: document.getElementById('input-cidade').value,
-                bio: document.getElementById('input-bio').value,
-                ensina: [],
-                aprende: [],
-                formato: document.querySelector('.format-card.active').getAttribute('data-formato')
-            };
-
-            document.querySelectorAll('#box-ensina .skill-item span').forEach(span => {
-                if(span.innerText.trim()) perfilData.ensina.push(span.innerText.trim());
-            });
-            document.querySelectorAll('#box-aprende .skill-item span').forEach(span => {
-                if(span.innerText.trim()) perfilData.aprende.push(span.innerText.trim());
-            });
-
-            localStorage.setItem('desenrola_dados', JSON.stringify(perfilData));
-            
-            window.location.href = "{% url 'meu_perfil' %}";
+        document.getElementById('input-aprender').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') { e.preventDefault(); adicionarHabilidade('aprender'); }
         });
     </script>
 </body>
