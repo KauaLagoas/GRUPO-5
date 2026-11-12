@@ -141,3 +141,5 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://*.github.dev',
 ]
+]
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
