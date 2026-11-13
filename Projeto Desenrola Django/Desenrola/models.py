@@ -37,7 +37,14 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nome
+    @property
+    def habilidadeEnsina(self):
+        return ", ".join(self.habilidades.filter(tipo="ensinar").values_list("nome", flat=True))
 
+    @property
+    def habilidadeAprende(self):
+        return ", ".join(self.habilidades.filter(tipo="aprender").values_list("nome", flat=True))
+        
 class Habilidade(models.Model):
     TIPO_CHOICES = [
         ('ensinar', 'Posso Ensinar'),
