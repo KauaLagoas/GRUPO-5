@@ -27,6 +27,7 @@ from django.urls import include
 
 urlpatterns = [
     path('accounts/', include(auth_urls)),
+    path('chat/', include('chat.urls')),
     path('moderacao/denuncias/', views_moderacao.painel, name='moderacao_denuncias'),
     path('moderacao/denuncias/<int:pk>/status/', views_moderacao.alterar_status, name='moderacao_status'),
     path('moderacao/denuncias/<int:pk>/remover/', views_moderacao.remover_alvo, name='moderacao_remover'),
