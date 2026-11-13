@@ -9,7 +9,7 @@ class Denuncia(models.Model):
     
     STATUS_CHOICES = [('aberta', 'Aberta'), ('em_analise', 'Em análise'), ('resolvida', 'Resolvida')]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='aberta')
-    usuario_alvo = models.ForeignKey(Usuario, null=True, blank=True, on_delete=models.SET_NULL, related_name='denuncias')
+    usuario_alvo = models.ForeignKey('Usuario', null=True, blank=True, on_delete=models.SET_NULL, related_name='denuncias')
     habilidade_alvo = models.CharField(max_length=100, blank=True)
 
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
