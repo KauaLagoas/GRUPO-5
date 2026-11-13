@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Conta - Desenrola</title>
+    <link rel="stylesheet" href="{% static 'css/remocao.css' %}">
+</head>
+<body>
+    <div class="danger-zone">
+        <h2>Excluir Conta</h2>
+        
+        <p>
+            <strong>Atenção:</strong> Esta ação é irreversível. Ao excluir sua conta no Desenrola, 
+            você perderá permanentemente o acesso ao seu histórico de mentorias, 
+            grupos e todas as suas avaliações.
+        </p>
+      
+        <!-- Mensagem de erro caso a senha digitada esteja errada -->
+        {% if erro %}
+        <p style="color: var(--vermelho-erro); font-weight: bold; margin-bottom: 16px; background: rgba(163, 45, 45, 0.1); padding: 12px; border-radius: 8px; border: 1px solid var(--vermelho-erro);">
+            {{ erro }}
+        </p>
+        {% endif %}
+
+        <form action="{% url 'excluir_conta' %}" method="POST" class="delete-form">
+            {% csrf_token %}
+            <label for="senha-confirmacao">Para continuar, digite sua senha atual:</label>
+            <input type="password" id="senha-confirmacao" name="senha" placeholder="Sua senha" required>
+            
+            <button type="submit" class="btn-danger">Sim, excluir minha conta permanentemente</button>
+            
+            <div style="text-align: center; margin-top: 16px;">
+                <a href="{% url 'meu_perfil' %}" style="color: var(--texto-secundario); text-decoration: none; font-weight: 700; transition: color 0.2s;" onmouseover="this.style.color='var(--texto-principal)'" onmouseout="this.style.color='var(--texto-secundario)'">Cancelar e voltar ao perfil</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

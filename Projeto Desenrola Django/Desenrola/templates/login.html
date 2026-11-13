@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar - Desenrola</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <main class="auth-container">
+        <div class="auth-header">
+            <a href="{% url 'home' %}" class="btn-back-link">❮ Voltar</a>
+        </div>
+        <div class="auth-card">
+            <img src="{% static 'img/logo desenrola.jpeg' %}" alt="Logo Desenrola" class="auth-logo">
+            <h1>Bem-vindo de volta!</h1>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="msg-erro">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" name="senha" required>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+            
+            <p class="auth-link">Ainda não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+        </div>
+    </main>
+</body>
+</html>

@@ -17,16 +17,29 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 from . import views_recomendacoes
 from . import views
+from . import views_moderacao
+from django.contrib.auth import urls as auth_urls
+from django.urls import include
 
 urlpatterns = [
+    path('accounts/', include(auth_urls)),
+    path('moderacao/denuncias/', views_moderacao.painel, name='moderacao_denuncias'),
+    path('moderacao/denuncias/<int:pk>/status/', views_moderacao.alterar_status, name='moderacao_status'),
+    path('moderacao/denuncias/<int:pk>/remover/', views_moderacao.remover_alvo, name='moderacao_remover'),
     path('', views.home, name='home'),
     path("admin/", admin.site.urls),
     path("recomendacoes/", views_recomendacoes.recomendacoes, name="recomendacoes"),
-    path('perfil/', views.meu_perfil, name='meu_perfil'),
-    path('perfil/editar/', views.editar_perfil, name='editar_perfil'),
-    path('sessoes/', views.minhas_sessoes, name='minhas_sessoes'),
+    path('perfil/', views.meu_perfil_view, name='meu_perfil'),
+    path('perfil/editar/', views.editar_perfil_view, name='editar_perfil'),
+    path('perfil/<str:username>/', views.perfil_publico, name='perfil_publico'),
+    path('sessoes/', views.sessoes_view, name='sessoes'),
     path('404/', views.erro404, name='erro404'),
     path('denunciar/', views.reportar, name='reportar'),
+    path('login/', views.login_view, name='login'),
+    path('cadastro/', views.cadastro_view, name='cadastro'),
+    path('excluir-conta/', views.excluir_conta_view, name='excluir_conta'),
+    path('logout/', views.sair_view, name='logout'),
 ]

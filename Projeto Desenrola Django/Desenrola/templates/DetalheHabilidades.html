@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenrola - Detalhe da Habilidade</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas id-badge fa-exchange-alt"></i></span>
+                <span class="logo-text">Desenrola</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Início</a>
+                <a href="#" class="active">Explorar Skills</a>
+                <a href="#">Minhas Trocas</a>
+                <a href="#">Mensagens</a>
+            </nav>
+            <div class="nav-user">
+                <div class="user-avatar">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Perfil">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="#"><i class="fas fa-arrow-left"></i> Voltar para a listagem</a>
+        </div>
+
+        <div class="skill-detail-grid">
+            
+            <!-- Left Column: Skill Main Info -->
+            <div class="skill-main-card">
+                <div class="skill-badge-category">
+                    <span class="category-tag hard">Hard Skill</span>
+                    <span class="level-tag">Avançado</span>
+                </div>
+
+                <h1 class="skill-title">Programação em C & Alocação Dinâmica de Memória</h1>
+                
+                <div class="skill-meta-bar">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span class="rating-score">4.9</span>
+                        <span class="rating-count">(42 sessões avaliadas)</span>
+                    </div>
+                    <div class="exchange-type">
+                        <i class="fas fa-sync-alt"></i> Troca por Soft ou Hard Skill
+                    </div>
+                </div>
+
+                <div class="skill-image-container">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Código de Programação C">
+                </div>
+
+                <div class="skill-section">
+                    <h2>Sobre esta Habilidade</h2>
+                    <p>Domine a linguagem C focando em eficiência, ponteiros, estruturas aninhadas e manipulação avançada de arquivos binários e de texto. Ideal para estudantes de engenharia e ciência da computação que buscam construir bases sólidas em sistemas de baixo nível.</p>
+                </div>
+
+                <div class="skill-section">
+                    <h2>O que você vai aprender</h2>
+                    <ul class="checklist">
+                        <li><i class="fas fa-check-circle"></i> Uso correto de <code>malloc</code>, <code>calloc</code>, <code>realloc</code> e prevenção de vazamentos de memória (memory leaks).</li>
+                        <li><i class="fas fa-check-circle"></i> Manipulação avançada de ponteiros e ponteiros para ponteiros.</li>
+                        <li><i class="fas fa-check-circle"></i> Definição e aninhamento de <code>structs</code> complexas.</li>
+                        <li><i class="fas fa-check-circle"></i> Leitura e escrita eficiente com <code>fscanf</code>, <code>fprintf</code>, <code>fread</code> e <code>fwrite</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: Instructor & Action Card -->
+            <div class="skill-sidebar">
+                <div class="action-card">
+                    <div class="instructor-profile">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Instrutor" class="instructor-avatar">
+                        <div class="instructor-info">
+                            <span class="instructor-label">Oferecido por</span>
+                            <h3 class="instructor-name">Pedro Lilienthal</h3>
+                            <p class="instructor-role">Engenharia de Computação • PUC-Rio</p>
+                        </div>
+                    </div>
+
+                    <div class="exchange-preference">
+                        <span class="preference-title"><i class="fas fa-exchange-alt"></i> Em troca busca por:</span>
+                        <p class="preference-desc">Soft skills em oratória, gestão de projetos ágeis ou lógica em Python.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="alert('Solicitação de sessão enviada com sucesso!')">
+                            <i class="fas fa-handshake"></i> Solicitar Sessão
+                        </button>
+                        <button class="btn btn-outline" onclick="this.classList.toggle('favorited')">
+                            <i class="fas fa-heart"></i> Favoritar
+                        </button>
+                    </div>
+
+                    <div class="security-note">
+                        <i class="fas fa-shield-alt"></i> Suas trocas são protegidas pelo sistema de reputação do Desenrola.
+                    </div>
+                </div>
+
+                <!-- Tags Card -->
+                <div class="tags-card">
+                    <h3>Tags Relacionadas</h3>
+                    <div class="tag-cloud">
+                        <span class="tag">#C</span>
+                        <span class="tag">#Algoritmos</span>
+                        <span class="tag">#Engenharia</span>
+                        <span class="tag">#Ponteiros</span>
+                        <span class="tag">#EstruturasDeDados</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Desenrola. Plataforma de Troca de Soft e Hard Skills. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
