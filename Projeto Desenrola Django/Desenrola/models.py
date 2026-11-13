@@ -56,3 +56,21 @@ class EventoModeracao(models.Model):
     moderador = models.ForeignKey('auth.User', null=True, on_delete=models.SET_NULL)
     descricao = models.CharField(max_length=250)
     criado_em = models.DateTimeField(auto_now_add=True)
+
+class Notificacao(models.Model):
+    TIPOS = [
+        ("nova_solicitacao", "Nova solicitação"),
+        ("sessao_aceita", "Sessão aceita"),
+        ("sessao_recusada", "Sessão recusada"),
+    ]
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notificacoes")
+    tipo = models.CharField(max_length=30, choices=TIPOS)
+    mensagem = models.CharField(max_length=255)
+    lida = models.BooleanField(default=False)
+    criada_em = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-criada_em"]
+
+    def __str__(self):
+        return f"{self.get_tipo_display()} para {self.usuario}"
