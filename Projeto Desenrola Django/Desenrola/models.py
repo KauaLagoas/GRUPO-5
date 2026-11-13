@@ -9,7 +9,7 @@ class Denuncia(models.Model):
     
     STATUS_CHOICES = [('aberta', 'Aberta'), ('em_analise', 'Em análise'), ('resolvida', 'Resolvida')]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='aberta')
-    usuario_alvo = models.ForeignKey(Usuario, null=True, blank=True, on_delete=models.SET_NULL, related_name='denuncias')
+    usuario_alvo = models.ForeignKey('Usuario', null=True, blank=True, on_delete=models.SET_NULL, related_name='denuncias')
     habilidade_alvo = models.CharField(max_length=100, blank=True)
 
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
@@ -56,3 +56,21 @@ class EventoModeracao(models.Model):
     moderador = models.ForeignKey('auth.User', null=True, on_delete=models.SET_NULL)
     descricao = models.CharField(max_length=250)
     criado_em = models.DateTimeField(auto_now_add=True)
+
+class Notificacao(models.Model):
+    TIPOS = [
+        ("nova_solicitacao", "Nova solicitação"),
+        ("sessao_aceita", "Sessão aceita"),
+        ("sessao_recusada", "Sessão recusada"),
+    ]
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notificacoes")
+    tipo = models.CharField(max_length=30, choices=TIPOS)
+    mensagem = models.CharField(max_length=255)
+    lida = models.BooleanField(default=False)
+    criada_em = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-criada_em"]
+
+    def __str__(self):
+        return f"{self.get_tipo_display()} para {self.usuario}"
