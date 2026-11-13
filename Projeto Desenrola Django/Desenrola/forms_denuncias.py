@@ -20,11 +20,11 @@ class DenunciaForm(forms.ModelForm):
         for usuario in Usuario.objects.order_by('nome', 'pk'):
             chave = f'u:{usuario.pk}'
             self.alvos[chave] = (usuario, '')
-            escolhas.append((chave, f'Usuário: {usuario.nome} (@{usuario.username})'))
+            escolhas.append((chave, f'Usuário: {usuario.nome} (@{usuario.user.username})'))
             for habilidade in separar_habilidades(usuario.habilidadeEnsina).values():
                 chave = f'h:{usuario.pk}:{sha256(habilidade.encode()).hexdigest()}'
                 self.alvos[chave] = (usuario, habilidade)
-                escolhas.append((chave, f'Habilidade: {habilidade} — @{usuario.username}'))
+                escolhas.append((chave, f'Habilidade: {habilidade} — @{usuario.user.username}'))
         self.fields['destino'].choices = escolhas
 
     def save(self, commit=True):
@@ -33,7 +33,7 @@ class DenunciaForm(forms.ModelForm):
         denuncia.usuario_alvo = usuario
         denuncia.habilidade_alvo = habilidade
         denuncia.tipo = 'habilidade' if habilidade else 'usuario'
-        denuncia.alvo = (f'{habilidade} (@{usuario.username})' if habilidade else f'@{usuario.username}')[:100]
+        denuncia.alvo = (f'{habilidade} (@{usuario.user.username})' if habilidade else f'@{usuario.user.username}')[:100]
         if commit:
             denuncia.save()
         return denuncia
