@@ -20,6 +20,7 @@
                 <a href="#categorias">Habilidades</a>
                 <a href="#convivencia">Convivência</a>
                 <a href="{% url 'reportar' %}">Denunciar</a>
+                {% if user.is_authenticated %}<a href="{% url 'chat:lista' %}">Mensagens</a>{% endif %}
                 {% if user.is_staff %}<a href="{% url 'moderacao_denuncias' %}">Moderação</a>{% endif %}
             </nav>
 
@@ -58,6 +59,7 @@
                         <a href="{% url 'recomendacoes' %}" class="btn btn-coral btn-grande">Ver recomendações</a>
                         <a href="{% url 'sessoes' %}" class="btn btn-contorno btn-grande">Minhas sessões</a>
                         <a href="{% url 'notificacoes' %}" class="btn btn-contorno btn-grande">Notificações</a>
+                        <a href="{% url 'chat:lista' %}" class="btn btn-contorno btn-grande">Mensagens</a>
                     {% else %}
                         <a href="/cadastro/" class="btn btn-coral btn-grande">Criar minha conta</a>
                         <a href="#como-funciona" class="btn btn-contorno btn-grande">Como funciona</a>
