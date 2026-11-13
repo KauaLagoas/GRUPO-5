@@ -15,4 +15,5 @@
 <details><summary>Histórico de moderação</summary><ul>{% for evento in denuncia.eventos.all %}<li>{{ evento.criado_em|date:'d/m/Y H:i' }} · {{ evento.moderador.username|default:'Conta removida' }} — {{ evento.descricao }}</li>{% empty %}<li>Nenhuma ação registrada.</li>{% endfor %}</ul></details></article>
 {% empty %}<section class="card"><p>Nenhuma denúncia encontrada.</p></section>{% endfor %}
 <nav aria-label="Paginação">{% if pagina.has_previous %}<a href="?status={{ status }}&page={{ pagina.previous_page_number }}">Anterior</a>{% endif %} Página {{ pagina.number }} de {{ pagina.paginator.num_pages }} {% if pagina.has_next %}<a href="?status={{ status }}&page={{ pagina.next_page_number }}">Próxima</a>{% endif %}</nav>
-</main></body></html>
+</main>    {% include "_rodape.html" %}
+</body></html>
